@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1161</width>
+    <height>778</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>CutTime Dashboard</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+	background-color: #f5f7fb;
+}
+QWidget {
+	font-family: &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif;
+	color: #333333;
+}
+QLineEdit {
+	background-color: white;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	padding: 10px;
+	color: #333;
+}
+QComboBox {
+	background-color: white;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	padding: 8px 15px;
+	color: #555;
+}
+QDateEdit {
+	background-color: white;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	padding: 8px 15px;
+	color: #555;
+}
+QComboBox::drop-down {
+	border: none;
+}
+QTableWidget {
+	background-color: white;
+	border: 1px solid #e0e0e0;
+	border-radius: 12px;
+	gridline-color: transparent;
+	outline: none;
+}
+QHeaderView::section {
+	background-color: white;
+	padding: 10px;
+	border: none;
+	border-bottom: 2px solid #f0f0f0;
+	font-weight: bold;
+	color: #555;
+}
+QTableWidget::item {
+	padding: 10px;
+	border-bottom: 1px solid #f5f7fb;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_Main">
+    <property name="spacing">
+     <number>20</number>
+    </property>
+    <property name="leftMargin">
+     <number>30</number>
+    </property>
+    <property name="topMargin">
+     <number>20</number>
+    </property>
+    <property name="rightMargin">
+     <number>30</number>
+    </property>
+    <property name="bottomMargin">
+     <number>30</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="headerContainer" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout_Header">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="logo">
+         <property name="minimumSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: #d438d4; border-radius: 8px; color: white; font-size: 20px; font-weight: bold;</string>
+         </property>
+         <property name="text">
+          <string>✂</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="titleWidget" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_Title">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>10</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="lblAppName">
+            <property name="styleSheet">
+             <string notr="true">font-size: 20px; font-weight: bold;</string>
+            </property>
+            <property name="text">
+             <string>CutTime</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="lblAppSub">
+            <property name="styleSheet">
+             <string notr="true">color: #888; font-size: 13px;</string>
+            </property>
+            <property name="text">
+             <string>Panel de gestión de citas</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QWidget" name="dateWidget" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_Date">
+          <property name="spacing">
+           <number>2</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="lblToday">
+            <property name="styleSheet">
+             <string notr="true">color: #888;</string>
+            </property>
+            <property name="text">
+             <string>Hoy</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="lblFullDate">
+            <property name="styleSheet">
+             <string notr="true">font-weight: bold;</string>
+            </property>
+            <property name="text">
+             <string>FECHA</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="cardsContainer" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout_Cards">
+       <property name="spacing">
+        <number>20</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="card1">
+         <property name="styleSheet">
+          <string notr="true">background-color: white; border-radius: 12px; border: 1px solid #e0e0e0;</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="vl_c1">
+          <item>
+           <widget class="QLabel" name="lblTitleAppointments">
+            <property name="styleSheet">
+             <string notr="true">color: #888;</string>
+            </property>
+            <property name="text">
+             <string>Citas hoy</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="lblValAppointments">
+            <property name="styleSheet">
+             <string notr="true">font-size: 24px; font-weight: bold;</string>
+            </property>
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="card2">
+         <property name="styleSheet">
+          <string notr="true">background-color: white; border-radius: 12px; border: 1px solid #e0e0e0;</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <layout class="QVBoxLayout" name="vl_c2">
+          <item>
+           <widget class="QLabel" name="lblTitle2">
+            <property name="styleSheet">
+             <string notr="true">color: #888;</string>
+            </property>
+            <property name="text">
+             <string>Total citas</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="lblVal2">
+            <property name="styleSheet">
+             <string notr="true">font-size: 24px; font-weight: bold;</string>
+            </property>
+            <property name="text">
+             <string>3</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="card3">
+         <property name="styleSheet">
+          <string notr="true">background-color: white; border-radius: 12px; border: 1px solid #e0e0e0;</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <layout class="QVBoxLayout" name="vl_c3">
+          <item>
+           <widget class="QLabel" name="lblTitleEarnings">
+            <property name="styleSheet">
+             <string notr="true">color: #888;</string>
+            </property>
+            <property name="text">
+             <string>Ingresos</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="lblValEarnings">
+            <property name="styleSheet">
+             <string notr="true">font-size: 24px; font-weight: bold;</string>
+            </property>
+            <property name="text">
+             <string>0€</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="card4">
+         <property name="styleSheet">
+          <string notr="true">background-color: white; border-radius: 12px; border: 1px solid #e0e0e0;</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <layout class="QVBoxLayout" name="vl_c4">
+          <item>
+           <widget class="QLabel" name="lblTitlePending">
+            <property name="styleSheet">
+             <string notr="true">color: #888;</string>
+            </property>
+            <property name="text">
+             <string>Pendientes</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="lblValPending">
+            <property name="styleSheet">
+             <string notr="true">font-size: 24px; font-weight: bold;</string>
+            </property>
+            <property name="text">
+             <string>1</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="filterFrame">
+      <property name="styleSheet">
+       <string notr="true">QFrame#filterFrame { background-color: white; border-radius: 12px; border: 1px solid #e0e0e0; }</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_Filters">
+       <property name="leftMargin">
+        <number>15</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>15</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QLineEdit" name="searchEdit">
+         <property name="placeholderText">
+          <string>  Buscar por nombre, teléfono o servicio...</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboStatus">
+         <property name="minimumSize">
+          <size>
+           <width>143</width>
+           <height>36</height>
+          </size>
+         </property>
+         <property name="mouseTracking">
+          <bool>false</bool>
+         </property>
+         <item>
+          <property name="text">
+           <string>Todos los estados</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Confirmada</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Pendiente</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDateEdit" name="dateEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>130</width>
+           <height>36</height>
+          </size>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
+         </property>
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTableWidget" name="tableAppointments">
+      <property name="focusPolicy">
+       <enum>Qt::FocusPolicy::NoFocus</enum>
+      </property>
+      <property name="showGrid">
+       <bool>false</bool>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Cliente</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Servicio</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Fecha</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Hora</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Precio</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Estado</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Acciones</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
