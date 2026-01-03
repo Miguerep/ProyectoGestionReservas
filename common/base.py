@@ -3,6 +3,7 @@ from dataclasses import dataclass
 
 db = SQLAlchemy();
 
+
 @dataclass
 class Persona:
     _nombre: str
@@ -11,13 +12,13 @@ class Persona:
     
     # --- GETTERS ---
     def get_nombre(self) -> str:
-        return self.nombre
+        return self._nombre
     
     def get_apellidos(self) -> str:  
-        return self.apellidos
+        return self._apellidos
     
     def get_telefono(self) -> str:
-        return self.telefono
+        return self._telefono
     
         # --- SETTERS ---
     def set_nombre(self, nombre: str):
@@ -31,6 +32,6 @@ class Persona:
         self._apellidos = apellidos
     
     def set_telefono(self, telefono: str):    
-        if not telefono or len(telefono.strip()) != 9:
+        if not telefono or len(telefono.strip()) != 9 or not telefono.isdigit():
             raise ValueError("El telefono no cumple los requisitos")
         self._telefono = telefono
