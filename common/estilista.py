@@ -5,7 +5,7 @@ from dataclasses import dataclass
 class Estilista(db.Model, Persona):
     __tablename__ = 'estilistas'
     
-    _id_estilista = db.Column(db.Integer, primary_key=True)
+    _id_estilista = db.Column("id_estilista", db.Integer, primary_key=True)
     _nombre = db.Column("nombre", db.String(50), nullable=False)
     _apellidos = db.Column("apellidos", db.String(100), nullable=True)
     _telefono = db.Column("telefono", db.String(20), nullable=True, unique=True)
