@@ -1,4 +1,4 @@
-from base import db, Persona
+from .base import db, Persona
 from dataclasses import dataclass
 
 @dataclass
@@ -9,11 +9,14 @@ class Cliente(db.Model, Persona):
     _nombre = db.Column("nombre", db.String(50), nullable=False)
     _apellidos = db.Column("apellidos", db.String(100), nullable=True)
     _telefono = db.Column("telefono", db.String(20), nullable=True, unique=True)
+    _email = db.Column("email", db.String(120), unique=True, nullable=False)
     _password_hash = db.Column("password_hash", db.String(255), nullable=False)
     
     # --- GETTERS ---
     def get_id(self) -> int:
         return self._id_cliente
+    
+
     
     def get_password_hash(self) -> str:
         return self._password_hash

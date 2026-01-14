@@ -5,12 +5,15 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "cryptography>=46.0.3",
+    "email-validator>=2.3.0",
     "flask>=3.1.2",
     "flask-cors>=6.0.2",
     "flask-jwt-extended>=4.7.1",
     "flask-sqlalchemy>=3.1.1",
     "mysql-connector-python>=9.5.0",
     "passlib[bcrypt]>=1.7.4",
+    "pymysql>=1.1.2",
     "pyside6>=6.10.1",
     "python-dotenv>=1.2.1",
 ]

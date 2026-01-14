@@ -9,6 +9,7 @@ class Persona:
     _nombre: str
     _apellidos: str
     _telefono: str
+    _email: str
     
     # --- GETTERS ---
     def get_nombre(self) -> str:
@@ -35,3 +36,6 @@ class Persona:
         if not telefono or len(telefono.strip()) != 9 or not telefono.isdigit():
             raise ValueError("El telefono no cumple los requisitos")
         self._telefono = telefono
+    
+    def set_email(self, email: str):
+        self._email = email

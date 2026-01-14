@@ -1,13 +1,13 @@
-from base import db
+from .base import db
 from dataclasses import dataclass
 
 @dataclass
-class servicio(db.Model):
+class Servicio(db.Model):
     __tablename__ = "servicios"
     
     _id_servicio = db.Column("id_servicio", db.Integer, primary_key=True)
     _nombre = db.Column("nombre", db.String(50), nullable=False)
-    _duracion = db.Column("duracion", db.Integer(50), nullable=False)
+    _duracion = db.Column("duracion", db.Integer, nullable=False)
     _precio = db.Column("precio", db.Float(20), nullable=True, unique=True)
       
     # --- GETTERS --- 

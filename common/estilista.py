@@ -1,4 +1,4 @@
-from base import db, Persona
+from .base import db, Persona
 from dataclasses import dataclass
 
 @dataclass
