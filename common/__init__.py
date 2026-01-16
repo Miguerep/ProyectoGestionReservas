@@ -9,6 +9,7 @@ from .peluqueria import Peluqueria
 from .estilista import Estilista
 from .citaServicio import CitaServicio
 from .peluqueriaServicio import PeluqueriaServicio
+from .gerente import Gerente
 
 #  __all__ para facilitar las importaciones masivas y el control de visibilidad
 __all__ = [
@@ -20,4 +21,5 @@ __all__ = [
     'Estilista',
     'CitaServicio',
     'PeluqueriaServicio',
+    "Gerente"
 ]

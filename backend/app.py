@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from flask import Flask
 from flask_cors import CORS
 from src.common import db, Cliente, Servicio, Cita, Peluqueria, Estilista, CitaServicio, PeluqueriaServicio
+from src.backend.routes import api
 
 load_dotenv()
 
@@ -25,6 +26,8 @@ with app.app_context():
     print("Tablas sincronizadas en " + db_name)
     
     
+app.register_blueprint(api)
+
 @app.route('/')
 def index():
     return {"status": "ok", "message": "API CutTime Online"}

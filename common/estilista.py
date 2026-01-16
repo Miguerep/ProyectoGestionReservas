@@ -2,23 +2,21 @@ from .base import db, Persona
 from dataclasses import dataclass
 
 @dataclass
-class Estilista(db.Model, Persona):
+class Estilista(Persona):
     __tablename__ = 'estilistas'
     
     _id_estilista = db.Column("id_estilista", db.Integer, primary_key=True)
-    _nombre = db.Column("nombre", db.String(50), nullable=False)
-    _apellidos = db.Column("apellidos", db.String(100), nullable=True)
-    _telefono = db.Column("telefono", db.String(20), nullable=True, unique=True)
-    _password_hash = db.Column("password_hash", db.String(255), nullable=False)
+    _activo: bool = db.Column("activo", db.Boolean, default=True)
+    _id_peluqueria: int = db.Column("id_peluqueria", db.Integer, 
+                                db.ForeignKey('peluquerias.id_peluqueria'), nullable=True)
     
     # --- GETTERS ---
     def get_id(self) -> int:
         return self._id_estilista
     
-    def get_password_hash(self) -> str:
-        return self._password_hash
+    def is_activo(self) -> bool:
+        return self._activo
     
-    # --- SETTERS ---
-        
-    def set_password_hash(self, password_hash: str):
-        self._password_hash = password_hash
+    # --- SETTERS ---   
+    def set_activo(self, estado: bool):
+        self._activo = estado
