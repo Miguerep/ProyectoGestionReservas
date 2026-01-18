@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask
+from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from src.common import db, Cliente, Servicio, Cita, Peluqueria, Estilista, CitaServicio, PeluqueriaServicio
 from src.backend.routes import api
@@ -18,6 +19,7 @@ port = os.getenv("DB_PORT")
 app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{user}:{passwd}@{host}:{port}/{db_name}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+jwt = JWTManager(app)
 
 db.init_app(app)
 

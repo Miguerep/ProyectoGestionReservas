@@ -52,6 +52,9 @@ class Persona(db.Model):
     
     def get_email(self) -> str:
         return self._email
+    
+    def get_password_hash(self)-> str:
+        return self._password_hash
 
     # --- SETTERS ---
     def set_nombre(self, nombre: str):
