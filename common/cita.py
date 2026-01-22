@@ -13,6 +13,10 @@ class Cita(db.Model):
     #Claves Foráneas
     _id_cliente = db.Column("id_cliente", db.Integer, 
                             db.ForeignKey("clientes.id_cliente"), nullable=False)
+    _id_peluqueria = db.Column("id_peluqueria", db.Integer, 
+                               db.ForeignKey('peluquerias.id_peluqueria'))
+    _id_servicio = db.Column("id_servicio", db.Integer, 
+                             db.ForeignKey('servicios.id_servicio'))
     
     # --- GETTERS --- 
     def get_id(self) -> int:
@@ -37,8 +41,12 @@ class Cita(db.Model):
     
     def set_cliente(self, cliente: int):
         self._id_cliente = cliente
-        
     
+    def set_peluqueria(self, peluqueria: int):
+        self._id_peluqueria = peluqueria
+        
+    def set_servicio(self, servicio: int):
+        self._id_servicio = servicio
     
     
         

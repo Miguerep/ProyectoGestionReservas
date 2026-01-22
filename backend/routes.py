@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt,  get_jwt_identity
+from datetime import datetime
 from email_validator import validate_email, EmailNotValidError
 from src.common import db, Cliente, Servicio, Cita, Peluqueria, Estilista, CitaServicio, PeluqueriaServicio, Gerente
 
@@ -106,7 +107,7 @@ def login():
             
             if rol == "cliente":
                 user = Cliente.query.filter_by(_email = email).first()
-                print(f"{user}")
+
             elif rol == "gerente":
                 user = Gerente.query.filter_by(_email = email).first()
             
@@ -116,7 +117,7 @@ def login():
             if user and check_password_hash(user.get_password_hash(), password):
                 
                 access_token = create_access_token(
-                identity=user.get_id(),          
+                identity=str(user.get_id()),          
                 additional_claims={"rol": rol}   
             )
                 return jsonify({"msg": "Login exitoso",
@@ -140,4 +141,52 @@ def login():
     
     except Exception as e:
         db.session.rollback()
-        return jsonify({"msg": f"Email invalido: {str(e)}"}), 400
+        return jsonify({"msg": f"Error: {str(e)}"}), 400
+    
+@api.route("/citas", methods=["POST"])
+@jwt_required()
+def solicitar_cita():
+    
+    claims = get_jwt()
+    if claims.get("rol") != "cliente":
+        return jsonify({"msg": "Acceso Denegado: Solo clientes pueden reservar citas."}), 403
+    
+    current_user_id = get_jwt_identity()
+    data = request.get_json()
+    print("\n--- DEBUG CITA ---")
+    print(f"Datos recibidos: {data}")
+    
+    if not data or not data.get("id_peluqueria") or not data.get("id_servicio") or not data.get("fecha"):
+        return jsonify({"msg": "Error, faltan datos obligatorios."}), 400    
+    
+    try:
+        nueva_cita = Cita()
+        
+        nueva_cita.set_cliente(int(current_user_id))
+        nueva_cita.set_peluqueria(data.get("id_peluqueria"))
+        nueva_cita.set_servicio(data.get("id_servicio"))
+        
+        fecha_str = data.get("fecha")
+        # Paréntesis también aquí:
+        nueva_cita.set_fecha(datetime.strptime(fecha_str, "%Y-%m-%d %H:%M"))
+        
+        nueva_cita.set_estado("Solicitada")
+        
+        db.session.add(nueva_cita)
+        db.session.commit()
+        
+        return jsonify({
+            "msg": "Cita solicitada con éxito",
+            "id": nueva_cita.get_id(),
+            "fecha": str(nueva_cita._fecha), 
+            "estado": "Solicitada"
+        }), 201
+
+        
+    except ValueError as e:
+        return jsonify({"msg":f"Error de validación: {str(e)}"}), 400
+    
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"msg": f"Error: {str(e)}"}), 400
+    
