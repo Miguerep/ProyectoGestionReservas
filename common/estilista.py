@@ -14,9 +14,15 @@ class Estilista(Persona):
     def get_id(self) -> int:
         return self._id_estilista
     
+    def get_id_peluqueria(self) -> int:
+        return self._id_peluqueria
+    
     def is_activo(self) -> bool:
         return self._activo
     
     # --- SETTERS ---   
     def set_activo(self, estado: bool):
         self._activo = estado
+
+    def set_peluqueria(self, peluqueria: int):
+        self._id_peluqueria = peluqueria

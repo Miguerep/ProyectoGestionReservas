@@ -1,0 +1,165 @@
+/* =======================================================
+   ESTILO GLOBAL - CutTime Theme v3
+   ======================================================= */
+
+/* 1. CONFIGURACIÓN BASE */
+QWidget {
+    font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+    color: #333333;
+    font-size: 14px;
+}
+
+/* Fondo principal para todas las ventanas */
+QMainWindow, QWidget#LoginScreen, QWidget#RegistroForm, QWidget#centralwidget {
+    background-color: #f8f9fa;
+}
+
+/* =======================================================
+   2. HEADER & LOGO (Dashboard)
+   ======================================================= */
+/* Logotipo Rosa */
+QLabel#logo {
+    background-color: #d63384; /* Magenta CutTime */
+    color: white;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Títulos del Dashboard */
+QLabel#lblAppName {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333333;
+}
+
+QLabel#lblAppSub {
+    color: #888888;
+    font-size: 13px;
+}
+
+/* Fecha en la esquina superior derecha */
+QLabel#lblToday {
+    color: #888888;
+}
+
+QLabel#lblFullDate {
+    font-weight: bold;
+    color: #333333;
+}
+
+/* =======================================================
+   3. TARJETAS (Cards) Y PANELES
+   ======================================================= */
+/* Aplicamos estilo de tarjeta blanca a:
+   - Los frames de estadísticas (card1 a card4)
+   - El frame de filtros (filterFrame)
+   - La tarjeta de login (cardFrame)
+*/
+QFrame#cardFrame, 
+QFrame#card1, QFrame#card2, QFrame#card3, QFrame#card4, 
+QFrame#filterFrame {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb; /* Borde gris muy suave */
+    border-radius: 12px;
+}
+
+/* Textos dentro de las tarjetas de estadísticas */
+QLabel#lblTitleAppointments, QLabel#lblTitle2, QLabel#lblTitleEarnings, QLabel#lblTitlePending {
+    color: #888888;
+    font-size: 14px;
+}
+
+QLabel#lblValAppointments, QLabel#lblVal2, QLabel#lblValEarnings, QLabel#lblValPending {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+}
+
+/* =======================================================
+   4. TABLA DE CITAS (QTableWidget)
+   ======================================================= */
+QTableWidget {
+    background-color: transparent;
+    border: none;
+    gridline-color: #f0f0f0;
+}
+
+/* Cabecera de la tabla */
+QHeaderView::section {
+    background-color: transparent;
+    color: #6b7280; /* Texto gris de cabecera */
+    font-weight: bold;
+    font-size: 13px;
+    border: none;
+    border-bottom: 2px solid #e5e7eb; /* Línea separadora */
+    padding: 10px 5px;
+    text-align: left;
+}
+
+/* Ítems de la tabla */
+QTableWidget::item {
+    padding: 10px 5px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+QTableWidget::item:selected {
+    background-color: #fce4ec; /* Rosa muy pálido al seleccionar */
+    color: #d63384;
+}
+
+/* =======================================================
+   5. CONTROLES DE FORMULARIO (Inputs, Combos, Dates)
+   ======================================================= */
+QLineEdit, QComboBox, QDateEdit {
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 6px 12px;
+    background-color: #ffffff;
+    selection-background-color: #d63384;
+    color: #333333;
+    height: 36px; /* Altura consistente para filtros */
+}
+
+QLineEdit:focus, QComboBox:focus, QDateEdit:focus {
+    border: 2px solid #d63384;
+}
+
+/* Estilo específico para Combo Box flecha */
+QComboBox::drop-down {
+    border: 0px;
+    width: 20px;
+}
+
+/* =======================================================
+   6. BOTONES (Generales y Login/Registro)
+   ======================================================= */
+/* Botón Primario */
+QPushButton {
+    background-color: #d63384;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+QPushButton:hover {
+    background-color: #be1868;
+}
+
+QPushButton:pressed {
+    background-color: #9d1555;
+}
+
+/* Botón Secundario (Cancelar) */
+QPushButton#btn_cancelar {
+    background-color: transparent;
+    color: #6b7280;
+    border: 1px solid #d1d5db;
+}
+
+QPushButton#btn_cancelar:hover {
+    background-color: #e5e7eb;
+}

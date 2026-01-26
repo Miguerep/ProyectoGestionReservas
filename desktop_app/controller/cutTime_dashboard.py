@@ -1,4 +1,4 @@
-from cutTime_dashboard_ui import Ui_MainWindow
+from ui.cutTime_dashboard_ui import Ui_MainWindow
 from PySide6.QtWidgets import QMainWindow
 from PySide6.QtCore import QDate
 
