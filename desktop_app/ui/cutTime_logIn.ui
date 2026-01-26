@@ -125,14 +125,14 @@
          </spacer>
         </item>
         <item>
-         <widget class="QLineEdit" name="userEdit">
+         <widget class="QLineEdit" name="userLE">
           <property name="placeholderText">
            <string>Correo</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="passwordEdit">
+         <widget class="QLineEdit" name="passLE">
           <property name="echoMode">
            <enum>QLineEdit::EchoMode::Password</enum>
           </property>

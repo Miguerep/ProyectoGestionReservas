@@ -68,16 +68,16 @@ class Ui_LoginScreen(object):
 
         self.verticalLayout.addItem(self.verticalSpacer_form)
 
-        self.userEdit = QLineEdit(self.cardFrame)
-        self.userEdit.setObjectName(u"userEdit")
+        self.userLE = QLineEdit(self.cardFrame)
+        self.userLE.setObjectName(u"userLE")
 
-        self.verticalLayout.addWidget(self.userEdit)
+        self.verticalLayout.addWidget(self.userLE)
 
-        self.passwordEdit = QLineEdit(self.cardFrame)
-        self.passwordEdit.setObjectName(u"passwordEdit")
-        self.passwordEdit.setEchoMode(QLineEdit.EchoMode.Password)
+        self.passLE = QLineEdit(self.cardFrame)
+        self.passLE.setObjectName(u"passLE")
+        self.passLE.setEchoMode(QLineEdit.EchoMode.Password)
 
-        self.verticalLayout.addWidget(self.passwordEdit)
+        self.verticalLayout.addWidget(self.passLE)
 
         self.loginButton = QPushButton(self.cardFrame)
         self.loginButton.setObjectName(u"loginButton")
@@ -111,8 +111,8 @@ class Ui_LoginScreen(object):
         self.iconPlaceholder.setText(QCoreApplication.translate("LoginScreen", u"\u2702\ufe0f", None))
         self.titleLabel.setText(QCoreApplication.translate("LoginScreen", u"CutTime", None))
         self.subtitleLabel.setText(QCoreApplication.translate("LoginScreen", u"Bienvenido de nuevo", None))
-        self.userEdit.setPlaceholderText(QCoreApplication.translate("LoginScreen", u"Correo", None))
-        self.passwordEdit.setPlaceholderText(QCoreApplication.translate("LoginScreen", u"Contrase\u00f1a", None))
+        self.userLE.setPlaceholderText(QCoreApplication.translate("LoginScreen", u"Correo", None))
+        self.passLE.setPlaceholderText(QCoreApplication.translate("LoginScreen", u"Contrase\u00f1a", None))
         self.loginButton.setText(QCoreApplication.translate("LoginScreen", u"Iniciar Sesi\u00f3n", None))
     # retranslateUi
 
