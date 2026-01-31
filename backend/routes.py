@@ -334,4 +334,4 @@ def obtener_citas_peluqueria(id_peluqueria):
         return jsonify(resultado), 200
     except Exception as e:
         return jsonify({"msg": f"Error al obtener citas: {str(e)}"}), 500
-    
+ 

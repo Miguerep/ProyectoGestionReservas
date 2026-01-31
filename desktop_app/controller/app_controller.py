@@ -16,21 +16,17 @@ class AppController:
         
         
         
-    def mostrar_dashboard(self, user_data, token):
-        print(f"¡Señal recibida! Usuario: {user_data['nombre']}")
-        print(f"Token guardado: {token}")
-        self.mainWindow = CutTime_dashboard()
+def mostrar_dashboard(self, token, id_peluqueria):
+        """Llamado tras el login exitoso"""
+        self.dashboard_view = CutTime_dashboard()
         
-        self.login_view.close()
+        # Obtener datos de la API
+        resultado = self.cita_service.get_citas_por_peluqueria(id_peluqueria, token)
         
-        id_pelu = 1 # Esto deberías obtenerlo de los datos del gerente logueado
-        resultado = self.cita_service.get_citas_por_peluqueria(id_pelu, token)
-
         if resultado["success"]:
-            # 3. LE PASAMOS LOS DATOS A LA VISTA
-            self.dashboard.actualizar_tabla(resultado["data"])
-        else:
-            print(f"Error al cargar citas: {resultado['error']}")
-        self.mainWindow.show()
+            # Enviar los datos a la vista para que los pinte
+            self.dashboard_view.rellenar_tabla(resultado["data"])
+        
+        self.dashboard_view.show()
         
         
