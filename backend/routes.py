@@ -200,8 +200,7 @@ def login():
 @api.route("/register/citas", methods=["POST"])
 @jwt_required()
 def solicitar_cita():
-    
-    
+
     claims = get_jwt()
     if claims.get("rol") != "cliente":
         return jsonify({"msg": "Acceso Denegado: Solo clientes pueden reservar citas."}), 403
@@ -307,3 +306,32 @@ def crear_peluqueria():
     except Exception as e:
         db.session.rollback()
         return jsonify({"msg": f"Error interno: {str(e)}"}), 500  
+    
+@api.route("/peluquerias/<int:id_peluqueria>/citas", methods=["GET"])
+@jwt_required()
+def obtener_citas_peluqueria(id_peluqueria):
+    try:
+        # Consultamos las citas uniendo con Cliente y Servicio para tener los nombres
+        citas = db.session.query(Cita, Cliente, Servicio, Estilista)\
+            .join(Cliente, Cita._id_cliente == Cliente._id)\
+            .join(Servicio, Cita._id_servicio == Servicio._id)\
+            .join(Estilista, Cita._id_estilista == Estilista._id)\
+            .filter(Cita._id_peluqueria == id_peluqueria)\
+            .all()
+
+        resultado = []
+        for cita, cliente, servicio, estilista in citas:
+            resultado.append({
+                "id": cita.get_id(),
+                "fecha": cita._fecha.strftime("%Y-%m-%d %H:%M"),
+                "cliente": cliente._nombre,
+                "servicio": servicio._nombre,
+                "estilista": estilista._nombre,
+                "estado": cita._estado,
+                "precio_congelado": cita._precio_congelado
+            })
+
+        return jsonify(resultado), 200
+    except Exception as e:
+        return jsonify({"msg": f"Error al obtener citas: {str(e)}"}), 500
+    

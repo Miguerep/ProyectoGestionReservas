@@ -20,10 +20,13 @@ class AuthService():
             
             if response.status_code == 200:
                 data=response.json()
+                
+                
                 return {
                     "success": True,
-                    "token": data.get("acccess_token"),
-                    "user": data.get("user")
+                    "user": data.get("user"),
+                    "access_token": data.get("access_token")
+                    
                 }
             else:
                 return {

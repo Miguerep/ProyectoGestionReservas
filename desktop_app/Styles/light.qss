@@ -83,15 +83,17 @@ QTableWidget {
     background-color: transparent;
     border: none;
     gridline-color: #f0f0f0;
+    
 }
 
 /* Cabecera de la tabla */
 QHeaderView::section {
-    background-color: transparent;
-    color: #6b7280; /* Texto gris de cabecera */
+    
+    background-color: #f0f0f0;
+    color: #333333; /* Texto gris de cabecera */
     font-weight: bold;
     font-size: 13px;
-    border: none;
+    border: 10px;
     border-bottom: 2px solid #e5e7eb; /* Línea separadora */
     padding: 10px 5px;
     text-align: left;
