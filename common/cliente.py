@@ -5,13 +5,10 @@ from dataclasses import dataclass
 class Cliente(Persona):
     __tablename__ = 'clientes'    
     
-    _id_cliente: int = db.Column("id_cliente", db.Integer, primary_key=True)  
+    # Mapeamos la columna 'id_cliente' al atributo 'id'
+    id: int = db.Column("id_cliente", db.Integer, primary_key=True)
     
-    # --- GETTERS ---
-    def get_id(self) -> int:
-        return self._id_cliente
+    # RELACIÓN: Un cliente tiene muchas citas
+    citas = db.relationship("Cita", back_populates="cliente", cascade="all, delete-orphan")
 
-
-    
-    
-    
+   

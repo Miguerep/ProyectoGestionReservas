@@ -1,39 +1,37 @@
 import os
-from dotenv import load_dotenv
 from flask import Flask
-from flask_jwt_extended import JWTManager
 from flask_cors import CORS
-from src.common import db, Cliente, Servicio, Cita, Peluqueria, Estilista, CitaServicio, PeluqueriaServicio
-from src.backend.routes import api
+from flask_jwt_extended import JWTManager
+from dotenv import load_dotenv # pip install python-dotenv
 
+# 1. Cargar variables de entorno
 load_dotenv()
+
+from src.common import db
+from src.backend.routes import api
 
 app = Flask(__name__)
 CORS(app)
-user = os.getenv("DB_USER")
-passwd = os.getenv("DB_PASSWORD")
-host = os.getenv("DB_HOST")
-db_name = os.getenv("DB_NAME")
-port = os.getenv("DB_PORT")
 
-app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{user}:{passwd}@{host}:{port}/{db_name}"
+# 2. Configuración Segura
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///cuttime.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
-jwt = JWTManager(app)
+# ¡JAMÁS HARDCODED! Lee de .env o usa una default solo en dev
+app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY", "fallback-secret-solo-para-dev")
 
+jwt = JWTManager(app)
 db.init_app(app)
 
-with app.app_context():
-    db.create_all()
-    print("Tablas sincronizadas en " + db_name)
-    
-    
 app.register_blueprint(api)
 
-@app.route('/')
-def index():
-    return {"status": "ok", "message": "API CutTime Online"}
+# 3. Global Error Handler
+@app.errorhandler(Exception)
+def handle_exception(e):
+    # Loguear el error real en servidor
+    print(f" ERROR 500: {str(e)}")
+    return {"msg": "Error interno del servidor", "error": str(e)}, 500
 
-
-if __name__ == '__main__':
-    app.run(debug=True, port=os.getenv("API_PORT"))
+if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
