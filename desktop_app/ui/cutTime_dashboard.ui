@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1161</width>
-    <height>755</height>
+    <width>1157</width>
+    <height>747</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,53 +16,6 @@
   <property name="styleSheet">
    <string notr="true">QMainWindow {
 	background-color: #f5f7fb;
-}
-QWidget {
-	font-family: &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif;
-	color: #333333;
-}
-QLineEdit {
-	background-color: white;
-	border: 1px solid #e0e0e0;
-	border-radius: 8px;
-	padding: 10px;
-	color: #333;
-}
-QComboBox {
-	background-color: white;
-	border: 1px solid #e0e0e0;
-	border-radius: 8px;
-	padding: 8px 15px;
-	color: #555;
-}
-QDateEdit {
-	background-color: white;
-	border: 1px solid #e0e0e0;
-	border-radius: 8px;
-	padding: 8px 15px;
-	color: #555;
-}
-QComboBox::drop-down {
-	border: none;
-}
-QTableWidget {
-	background-color: white;
-	border: 1px solid #e0e0e0;
-	border-radius: 12px;
-	gridline-color: transparent;
-	outline: none;
-}
-QHeaderView::section {
-	background-color: white;
-	padding: 10px;
-	border: none;
-	border-bottom: 2px solid #f0f0f0;
-	font-weight: bold;
-	color: #555;
-}
-QTableWidget::item {
-	padding: 10px;
-	border-bottom: 1px solid #f5f7fb;
 }
 </string>
   </property>
@@ -468,6 +421,9 @@ QTableWidget::item {
       <property name="sortingEnabled">
        <bool>true</bool>
       </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>true</bool>
+      </attribute>
       <attribute name="horizontalHeaderStretchLastSection">
        <bool>true</bool>
       </attribute>
@@ -506,7 +462,7 @@ QTableWidget::item {
       </column>
       <column>
        <property name="text">
-        <string>Acciones</string>
+        <string>Teléfono</string>
        </property>
       </column>
      </widget>

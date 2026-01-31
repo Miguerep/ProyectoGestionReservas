@@ -17,17 +17,23 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QComboBox, QDateEdit,
     QFrame, QHBoxLayout, QHeaderView, QLabel,
-    QLineEdit, QMainWindow, QSizePolicy, QSpacerItem,
-    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+    QLineEdit, QMainWindow, QPushButton, QSizePolicy,
+    QSpacerItem, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1161, 778)
+        MainWindow.resize(1157, 747)
+        MainWindow.setStyleSheet(u"QMainWindow {\n"
+"	background-color: #f5f7fb;\n"
+"}\n"
+"")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_Main = QVBoxLayout(self.centralwidget)
+        self.verticalLayout_Main.setSpacing(20)
         self.verticalLayout_Main.setObjectName(u"verticalLayout_Main")
         self.verticalLayout_Main.setContentsMargins(30, 20, 30, 30)
         self.headerContainer = QWidget(self.centralwidget)
@@ -39,7 +45,8 @@ class Ui_MainWindow(object):
         self.logo.setObjectName(u"logo")
         self.logo.setMinimumSize(QSize(40, 40))
         self.logo.setMaximumSize(QSize(40, 40))
-        self.logo.setAlignment(Qt.AlignCenter)
+        self.logo.setStyleSheet(u"background-color: #d438d4; border-radius: 8px; color: white; font-size: 20px; font-weight: bold;")
+        self.logo.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_Header.addWidget(self.logo)
 
@@ -51,11 +58,13 @@ class Ui_MainWindow(object):
         self.verticalLayout_Title.setContentsMargins(10, 0, 0, 0)
         self.lblAppName = QLabel(self.titleWidget)
         self.lblAppName.setObjectName(u"lblAppName")
+        self.lblAppName.setStyleSheet(u"font-size: 20px; font-weight: bold;")
 
         self.verticalLayout_Title.addWidget(self.lblAppName)
 
         self.lblAppSub = QLabel(self.titleWidget)
         self.lblAppSub.setObjectName(u"lblAppSub")
+        self.lblAppSub.setStyleSheet(u"color: #888; font-size: 13px;")
 
         self.verticalLayout_Title.addWidget(self.lblAppSub)
 
@@ -73,13 +82,15 @@ class Ui_MainWindow(object):
         self.verticalLayout_Date.setObjectName(u"verticalLayout_Date")
         self.lblToday = QLabel(self.dateWidget)
         self.lblToday.setObjectName(u"lblToday")
-        self.lblToday.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.lblToday.setStyleSheet(u"color: #888;")
+        self.lblToday.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_Date.addWidget(self.lblToday)
 
         self.lblFullDate = QLabel(self.dateWidget)
         self.lblFullDate.setObjectName(u"lblFullDate")
-        self.lblFullDate.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.lblFullDate.setStyleSheet(u"font-weight: bold;")
+        self.lblFullDate.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_Date.addWidget(self.lblFullDate)
 
@@ -97,17 +108,20 @@ class Ui_MainWindow(object):
         self.horizontalLayout_Cards.setContentsMargins(0, 0, 0, 0)
         self.card1 = QFrame(self.cardsContainer)
         self.card1.setObjectName(u"card1")
-        self.card1.setFrameShape(QFrame.StyledPanel)
-        self.card1.setFrameShadow(QFrame.Raised)
+        self.card1.setStyleSheet(u"background-color: white; border-radius: 12px; border: 1px solid #e0e0e0;")
+        self.card1.setFrameShape(QFrame.Shape.StyledPanel)
+        self.card1.setFrameShadow(QFrame.Shadow.Raised)
         self.vl_c1 = QVBoxLayout(self.card1)
         self.vl_c1.setObjectName(u"vl_c1")
         self.lblTitleAppointments = QLabel(self.card1)
         self.lblTitleAppointments.setObjectName(u"lblTitleAppointments")
+        self.lblTitleAppointments.setStyleSheet(u"color: #888;")
 
         self.vl_c1.addWidget(self.lblTitleAppointments)
 
         self.lblValAppointments = QLabel(self.card1)
         self.lblValAppointments.setObjectName(u"lblValAppointments")
+        self.lblValAppointments.setStyleSheet(u"font-size: 24px; font-weight: bold;")
 
         self.vl_c1.addWidget(self.lblValAppointments)
 
@@ -116,17 +130,19 @@ class Ui_MainWindow(object):
 
         self.card2 = QFrame(self.cardsContainer)
         self.card2.setObjectName(u"card2")
-        self.card2.setFrameShape(QFrame.StyledPanel)
-        self.card2.setFrameShadow(QFrame.Raised)
+        self.card2.setStyleSheet(u"background-color: white; border-radius: 12px; border: 1px solid #e0e0e0;")
+        self.card2.setFrameShape(QFrame.Shape.StyledPanel)
         self.vl_c2 = QVBoxLayout(self.card2)
         self.vl_c2.setObjectName(u"vl_c2")
         self.lblTitle2 = QLabel(self.card2)
         self.lblTitle2.setObjectName(u"lblTitle2")
+        self.lblTitle2.setStyleSheet(u"color: #888;")
 
         self.vl_c2.addWidget(self.lblTitle2)
 
         self.lblVal2 = QLabel(self.card2)
         self.lblVal2.setObjectName(u"lblVal2")
+        self.lblVal2.setStyleSheet(u"font-size: 24px; font-weight: bold;")
 
         self.vl_c2.addWidget(self.lblVal2)
 
@@ -135,17 +151,19 @@ class Ui_MainWindow(object):
 
         self.card3 = QFrame(self.cardsContainer)
         self.card3.setObjectName(u"card3")
-        self.card3.setFrameShape(QFrame.StyledPanel)
-        self.card3.setFrameShadow(QFrame.Raised)
+        self.card3.setStyleSheet(u"background-color: white; border-radius: 12px; border: 1px solid #e0e0e0;")
+        self.card3.setFrameShape(QFrame.Shape.StyledPanel)
         self.vl_c3 = QVBoxLayout(self.card3)
         self.vl_c3.setObjectName(u"vl_c3")
         self.lblTitleEarnings = QLabel(self.card3)
         self.lblTitleEarnings.setObjectName(u"lblTitleEarnings")
+        self.lblTitleEarnings.setStyleSheet(u"color: #888;")
 
         self.vl_c3.addWidget(self.lblTitleEarnings)
 
         self.lblValEarnings = QLabel(self.card3)
         self.lblValEarnings.setObjectName(u"lblValEarnings")
+        self.lblValEarnings.setStyleSheet(u"font-size: 24px; font-weight: bold;")
 
         self.vl_c3.addWidget(self.lblValEarnings)
 
@@ -154,17 +172,19 @@ class Ui_MainWindow(object):
 
         self.card4 = QFrame(self.cardsContainer)
         self.card4.setObjectName(u"card4")
-        self.card4.setFrameShape(QFrame.StyledPanel)
-        self.card4.setFrameShadow(QFrame.Raised)
+        self.card4.setStyleSheet(u"background-color: white; border-radius: 12px; border: 1px solid #e0e0e0;")
+        self.card4.setFrameShape(QFrame.Shape.StyledPanel)
         self.vl_c4 = QVBoxLayout(self.card4)
         self.vl_c4.setObjectName(u"vl_c4")
         self.lblTitlePending = QLabel(self.card4)
         self.lblTitlePending.setObjectName(u"lblTitlePending")
+        self.lblTitlePending.setStyleSheet(u"color: #888;")
 
         self.vl_c4.addWidget(self.lblTitlePending)
 
         self.lblValPending = QLabel(self.card4)
         self.lblValPending.setObjectName(u"lblValPending")
+        self.lblValPending.setStyleSheet(u"font-size: 24px; font-weight: bold;")
 
         self.vl_c4.addWidget(self.lblValPending)
 
@@ -176,8 +196,9 @@ class Ui_MainWindow(object):
 
         self.filterFrame = QFrame(self.centralwidget)
         self.filterFrame.setObjectName(u"filterFrame")
-        self.filterFrame.setFrameShape(QFrame.StyledPanel)
-        self.filterFrame.setFrameShadow(QFrame.Raised)
+        self.filterFrame.setStyleSheet(u"QFrame#filterFrame { background-color: white; border-radius: 12px; border: 1px solid #e0e0e0; }")
+        self.filterFrame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.filterFrame.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_Filters = QHBoxLayout(self.filterFrame)
         self.horizontalLayout_Filters.setObjectName(u"horizontalLayout_Filters")
         self.horizontalLayout_Filters.setContentsMargins(15, 10, 15, 10)
@@ -192,6 +213,7 @@ class Ui_MainWindow(object):
         self.comboStatus.addItem("")
         self.comboStatus.setObjectName(u"comboStatus")
         self.comboStatus.setMinimumSize(QSize(143, 36))
+        self.comboStatus.setMouseTracking(False)
 
         self.horizontalLayout_Filters.addWidget(self.comboStatus)
 
@@ -203,8 +225,8 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.dateEdit.sizePolicy().hasHeightForWidth())
         self.dateEdit.setSizePolicy(sizePolicy)
         self.dateEdit.setMinimumSize(QSize(130, 36))
-        self.dateEdit.setAlignment(Qt.AlignJustify|Qt.AlignVCenter)
-        self.dateEdit.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.dateEdit.setAlignment(Qt.AlignmentFlag.AlignJustify|Qt.AlignmentFlag.AlignVCenter)
+        self.dateEdit.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
 
         self.horizontalLayout_Filters.addWidget(self.dateEdit)
 
@@ -229,13 +251,39 @@ class Ui_MainWindow(object):
         __qtablewidgetitem6 = QTableWidgetItem()
         self.tableAppointments.setHorizontalHeaderItem(6, __qtablewidgetitem6)
         self.tableAppointments.setObjectName(u"tableAppointments")
-        self.tableAppointments.setFocusPolicy(Qt.NoFocus)
+        self.tableAppointments.setMaximumSize(QSize(16777215, 2000))
+        self.tableAppointments.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         self.tableAppointments.setShowGrid(False)
         self.tableAppointments.setSortingEnabled(True)
+        self.tableAppointments.horizontalHeader().setCascadingSectionResizes(True)
         self.tableAppointments.horizontalHeader().setStretchLastSection(True)
         self.tableAppointments.verticalHeader().setVisible(False)
 
         self.verticalLayout_Main.addWidget(self.tableAppointments)
+
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.pushButton_2 = QPushButton(self.centralwidget)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+
+        self.horizontalLayout.addWidget(self.pushButton_2)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer_2)
+
+        self.pushButton = QPushButton(self.centralwidget)
+        self.pushButton.setObjectName(u"pushButton")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
+        self.pushButton.setSizePolicy(sizePolicy1)
+
+        self.horizontalLayout.addWidget(self.pushButton)
+
+
+        self.verticalLayout_Main.addLayout(self.horizontalLayout)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -250,7 +298,7 @@ class Ui_MainWindow(object):
         self.lblAppName.setText(QCoreApplication.translate("MainWindow", u"CutTime", None))
         self.lblAppSub.setText(QCoreApplication.translate("MainWindow", u"Panel de gesti\u00f3n de citas", None))
         self.lblToday.setText(QCoreApplication.translate("MainWindow", u"Hoy", None))
-        self.lblFullDate.setText(QCoreApplication.translate("MainWindow", u"22/01/2026", None))
+        self.lblFullDate.setText(QCoreApplication.translate("MainWindow", u"FECHA", None))
         self.lblTitleAppointments.setText(QCoreApplication.translate("MainWindow", u"Citas hoy", None))
         self.lblValAppointments.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.lblTitle2.setText(QCoreApplication.translate("MainWindow", u"Total citas", None))
@@ -259,12 +307,11 @@ class Ui_MainWindow(object):
         self.lblValEarnings.setText(QCoreApplication.translate("MainWindow", u"0\u20ac", None))
         self.lblTitlePending.setText(QCoreApplication.translate("MainWindow", u"Pendientes", None))
         self.lblValPending.setText(QCoreApplication.translate("MainWindow", u"1", None))
-        self.searchEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u" Buscar por nombre, tel\u00e9fono o servicio...", None))
+        self.searchEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"  Buscar por nombre, tel\u00e9fono o servicio...", None))
         self.comboStatus.setItemText(0, QCoreApplication.translate("MainWindow", u"Todos los estados", None))
         self.comboStatus.setItemText(1, QCoreApplication.translate("MainWindow", u"Confirmada", None))
         self.comboStatus.setItemText(2, QCoreApplication.translate("MainWindow", u"Pendiente", None))
 
-        self.dateEdit.setDisplayFormat(QCoreApplication.translate("MainWindow", u"dd/MM/yyyy", None))
         ___qtablewidgetitem = self.tableAppointments.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Cliente", None));
         ___qtablewidgetitem1 = self.tableAppointments.horizontalHeaderItem(1)
@@ -278,6 +325,8 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem5 = self.tableAppointments.horizontalHeaderItem(5)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Estado", None));
         ___qtablewidgetitem6 = self.tableAppointments.horizontalHeaderItem(6)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Acciones", None));
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Tel\u00e9fono", None));
+        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
     # retranslateUi
 
