@@ -1,13 +1,11 @@
-from src.common import db, Cita, CitaServicio, Servicio, Peluqueria
 from datetime import datetime
 from sqlalchemy.exc import SQLAlchemyError
+from src.common import db, Cita, CitaServicio, Servicio, Peluqueria
 
 class CitaService:
     @staticmethod
     def crear_cita(cliente_id, data):
-        """Lógica de negocio pura para crear citas"""
-        
-        # 1. Validaciones
+        # 1. Validaciones de Negocio
         servicio = Servicio.query.get(data.get("id_servicio"))
         if not servicio:
             raise ValueError("El servicio especificado no existe.")
@@ -21,27 +19,28 @@ class CitaService:
         except ValueError:
             raise ValueError("Formato de fecha inválido. Use YYYY-MM-DD HH:MM")
 
-        # 2. Creación Transaccional
+        # 2. Transacción Atómica
         try:
+            # Creamos la cabecera de la cita
             nueva_cita = Cita(
                 cliente_id=cliente_id,
-                peluqueria_id=peluqueria.id, # Acceso pythonico
+                peluqueria_id=peluqueria.id,
                 servicio_id=servicio.id,
                 fecha=fecha,
                 estado="Solicitada"
             )
             db.session.add(nueva_cita)
-            db.session.flush() # Para obtener el ID
+            db.session.flush() # Genera el ID sin commitear aún
 
-            # Guardar precio congelado en tabla detalle
+            # Guardamos el precio histórico (Snapshot)
             detalle = CitaServicio(
                 cita_id=nueva_cita.id,
                 servicio_id=servicio.id,
-                precio_aplicado=servicio.precio # Acceso pythonico
+                precio_aplicado=servicio.precio
             )
             db.session.add(detalle)
-            db.session.commit()
             
+            db.session.commit() # Confirmamos todo el bloque
             return nueva_cita
 
         except SQLAlchemyError as e:
@@ -50,20 +49,18 @@ class CitaService:
 
     @staticmethod
     def obtener_por_peluqueria(id_peluqueria):
-        """Uso eficiente del ORM con relaciones"""
-        # Ya no hacen falta joins manuales explícitos si configuramos 'joinedload' 
-        # o dejamos que SQLAlchemy haga lazy loading (aunque eager es mejor para performance)
+        # Usamos la potencia de las relaciones definidas en los modelos
         citas = Cita.query.filter_by(peluqueria_id=id_peluqueria).all()
         
         resultado = []
         for c in citas:
             resultado.append({
                 "id": c.id,
-                "fecha": c.fecha.strftime("%Y-%m-%d %H:%M"), # Formateado aquí
+                "fecha": c.fecha.strftime("%Y-%m-%d %H:%M"),
                 "cliente": c.cliente.nombre if c.cliente else "Desconocido",
                 "servicio": c.servicio.nombre if c.servicio else "N/A",
                 "estilista": c.estilista.nombre if c.estilista else "Por asignar",
                 "estado": c.estado,
-                "precio_congelado": c.precio_final # Usando la @property
+                "precio_congelado": c.detalle_servicio.precio_aplicado if c.detalle_servicio else 0.0
             })
         return resultado

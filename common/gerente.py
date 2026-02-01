@@ -5,8 +5,6 @@ from dataclasses import dataclass
 class Gerente(Persona):
     __tablename__ = 'gerentes'
     
-    _id_gerente = db.Column("id_gerente", db.Integer, primary_key=True) 
+    # CORRECCIÓN: Mapeamos la columna 'id_gerente' al atributo 'id'
+    id: int = db.Column("id_gerente", db.Integer, primary_key=True)
     
-    # --- GETTERS ---
-    def get_id(self) -> int:
-        return self._id_gerente

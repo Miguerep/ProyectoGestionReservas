@@ -5,24 +5,9 @@ from dataclasses import dataclass
 class Estilista(Persona):
     __tablename__ = 'estilistas'
     
-    _id_estilista = db.Column("id_estilista", db.Integer, primary_key=True)
-    _activo: bool = db.Column("activo", db.Boolean, default=True)
-    _id_peluqueria: int = db.Column("id_peluqueria", db.Integer, 
-                                db.ForeignKey('peluquerias.id_peluqueria'), nullable=True)
+    # CORRECCIÓN: Mapeamos 'id_estilista' a 'id'
+    id = db.Column("id_estilista", db.Integer, primary_key=True)
+    activo = db.Column(db.Boolean, default=True, nullable=False)
     
-    # --- GETTERS ---
-    def get_id(self) -> int:
-        return self._id_estilista
+    id_peluqueria = db.Column(db.Integer, db.ForeignKey('peluquerias.id_peluqueria'), nullable=False)
     
-    def get_id_peluqueria(self) -> int:
-        return self._id_peluqueria
-    
-    def is_activo(self) -> bool:
-        return self._activo
-    
-    # --- SETTERS ---   
-    def set_activo(self, estado: bool):
-        self._activo = estado
-
-    def set_peluqueria(self, peluqueria: int):
-        self._id_peluqueria = peluqueria

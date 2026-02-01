@@ -1,14 +1,14 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 
-# Importamos los servicios (Patrón Service Layer)
+# Importamos ÚNICAMENTE los servicios
 from src.backend.services.auth_service import AuthService
 from src.backend.services.cita_service import CitaService
 from src.backend.services.peluqueria_service import PeluqueriaService
 
 api = Blueprint("api", __name__)
 
-# --- RUTAS DE AUTENTICACIÓN ---
+# --- CONTROLADORES DE AUTENTICACIÓN ---
 
 @api.route("/register/cliente", methods=["POST"])
 def register_cliente():
@@ -42,11 +42,12 @@ def login():
     except ValueError as e:
         return jsonify({"msg": str(e)}), 401
 
-# --- RUTAS DE GESTIÓN (Peluquerías) ---
+# --- CONTROLADORES DE PELUQUERÍA ---
 
 @api.route("/register/peluquerias", methods=["POST"])
 @jwt_required()
 def crear_peluqueria():
+    # Validación de Rol (Authorization) sigue siendo responsabilidad de la capa HTTP/Router
     claims = get_jwt()
     if claims.get("rol") != "gerente":
         return jsonify({"msg": "Acceso denegado"}), 403
@@ -57,7 +58,7 @@ def crear_peluqueria():
     except ValueError as e:
         return jsonify({"msg": str(e)}), 400
 
-# --- RUTAS DE CITAS ---
+# --- CONTROLADORES DE CITAS ---
 
 @api.route("/register/citas", methods=["POST"])
 @jwt_required()
@@ -68,14 +69,17 @@ def solicitar_cita():
     
     try:
         user_id = int(get_jwt_identity())
+        # Delegamos toda la complejidad al servicio
         cita = CitaService.crear_cita(user_id, request.get_json())
         return jsonify({"msg": "Cita creada", "id": cita.id}), 201
     except ValueError as e:
         return jsonify({"msg": str(e)}), 400
+    except Exception as e:
+        return jsonify({"msg": "Error interno del servidor", "error": str(e)}), 500
 
 @api.route("/peluquerias/<int:id_peluqueria>/citas", methods=["GET"])
 @jwt_required()
 def obtener_citas_peluqueria(id_peluqueria):
-    # Ya no hay lógica SQL aquí, solo llamada al servicio
+    # El controlador solo pide datos y los entrega. No sabe de SQL.
     datos = CitaService.obtener_por_peluqueria(id_peluqueria)
     return jsonify(datos), 200

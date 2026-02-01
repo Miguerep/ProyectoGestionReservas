@@ -29,3 +29,5 @@ class Cita(db.Model):
     def precio_final(self):
         """Propiedad calculada: Fuente única de la verdad"""
         return self.detalle_servicio.precio_aplicado if self.detalle_servicio else 0.0
+    
+    

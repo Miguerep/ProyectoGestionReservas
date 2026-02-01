@@ -3,36 +3,21 @@ from dataclasses import dataclass
 
 @dataclass
 class Peluqueria(db.Model):
-    __tablename__ = "peluquerias"
+    __tablename__ = 'peluquerias'
     
-    _id_peluqueria = db.Column("id_peluqueria", db.Integer, primary_key=True)
-    _nombre = db.Column("nombre", db.String(50), nullable=False)
-    _direccion = db.Column("direccion", db.String(50), nullable=False)
-    _telefono = db.Column("telefono", db.String(20), nullable=True, unique=True)
-      
-    # --- GETTERS --- 
-    def get_id(self) -> int:
-        return self._id_peluqueria
+    # Mapeo id_peluqueria -> id
+    id = db.Column("id_peluqueria", db.Integer, primary_key=True)
+    nombre = db.Column(db.String(100), nullable=False)
+    direccion = db.Column(db.String(200), nullable=False)
+    telefono = db.Column(db.String(20), nullable=False, unique=True)
+
+    # Relación con Servicios (Muchos-a-Muchos)
+    servicios = db.relationship(
+        "Servicio",
+        secondary="peluquerias_servicios",
+        back_populates="peluquerias"
+    )
     
-    def get_nombre(self) -> str:
-        return self._nombre
-    
-    def get_direccion(self) -> str:
-        return self._direccion
-    
-    def get_telefono(self) -> str:
-        return self._telefono
-    
-    # --- SETTERS ---
-    
-    def set_nombre(self, nombre: str):
-        self._nombre = nombre
-        
-    def set_direccion(self, direccion: str):
-        self._direccion = direccion
-    
-    def set_telefono(self, telefono: str):
-        self._telefono = telefono
-        
-    
- 
+    # Relación con Estilistas (Uno-a-Muchos)
+    # Usamos 'overlaps' para evitar advertencias si hay conflictos con backrefs antiguos
+    estilistas = db.relationship("Estilista", backref="peluqueria_ref", lazy=True)

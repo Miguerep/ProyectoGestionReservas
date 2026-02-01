@@ -1,4 +1,4 @@
-import sys
+
 from src.desktop_app.utils.json_handler import JsonHandler
 from src.desktop_app.controller.login import Login
 from src.desktop_app.controller.cutTime_dashboard import CutTime_dashboard

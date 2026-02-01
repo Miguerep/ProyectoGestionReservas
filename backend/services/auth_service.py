@@ -15,7 +15,6 @@ class AuthService:
 
     @staticmethod
     def registrar_usuario(tipo, data):
-        """Maneja el registro de Cliente, Gerente o Estilista"""
         email = AuthService._validar_email(data.get("email"))
         password = data.get("password")
         nombre = data.get("nombre")
@@ -23,9 +22,9 @@ class AuthService:
         if not all([email, password, nombre]):
             raise ValueError("Faltan datos obligatorios")
 
-        # Selección del modelo según el tipo
+        # Factory logic simple para crear usuarios
         if tipo == "cliente":
-            if Cliente.query.filter_by(email=email).first(): # Usando atributo público 'email'
+            if Cliente.query.filter_by(email=email).first():
                 raise ValueError("El usuario ya existe")
             nuevo_user = Cliente(nombre=nombre, email=email, password_hash=generate_password_hash(password))
             
@@ -50,7 +49,6 @@ class AuthService:
         else:
             raise ValueError("Tipo de usuario no válido")
 
-        # Campos opcionales comunes
         if data.get("apellidos"): nuevo_user.apellidos = data.get("apellidos")
         if data.get("telefono"): nuevo_user.telefono = data.get("telefono")
 
