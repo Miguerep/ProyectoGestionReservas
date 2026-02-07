@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 class JsonHandler:
+    @staticmethod
     def load_json(file_path: str) -> dict:
         
         path = Path(file_path)
@@ -10,6 +11,7 @@ class JsonHandler:
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
         
+    @staticmethod
     def save_json(file_path: str, data: dict) -> None:
         path = Path(file_path)
         with open(path, "w", encoding="utf-8") as f:

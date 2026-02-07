@@ -36,7 +36,8 @@ class Persona(db.Model):
     @validates('telefono')
     def validate_telefono(self, key, telefono):
         if telefono:
-            if len(telefono.strip()) != 9 or not telefono.isdigit():
+            telefono_limpio = telefono.strip()
+            if len(telefono_limpio) != 9 or not telefono_limpio.isdigit():
                 raise ValueError("El teléfono debe tener 9 dígitos numéricos.")
         return telefono
 

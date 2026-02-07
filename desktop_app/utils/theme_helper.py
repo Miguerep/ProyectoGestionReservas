@@ -4,7 +4,7 @@ from pathlib import Path
 class ThemeHelper:
     def __init__(self):
 
-        self.base_path = Path(__file__).parent.parent / "styles"
+        self.base_path = Path(__file__).parent.parent / "Styles"
         
         self.available_themes = {
             "light": "light.qss",
