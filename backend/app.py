@@ -22,7 +22,11 @@ db_name = os.getenv("DB_NAME")
 
 app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["JWT_SECRET_KEY"] = os.getenv("SECRET_KEY") 
+
+jwt_secret = os.getenv("SECRET_KEY")
+if not jwt_secret:
+    raise RuntimeError("SECRET_KEY no está definida en las variables de entorno. Abortando.")
+app.config["JWT_SECRET_KEY"] = jwt_secret
 
 jwt = JWTManager(app)
 db.init_app(app)
@@ -33,7 +37,9 @@ app.register_blueprint(api)
 @app.errorhandler(Exception)
 def handle_exception(e):
     print(f"ERROR: {e}")
-    return {"msg": "Error interno del servidor", "error": str(e)}, 500
+    if app.debug:
+        return {"msg": "Error interno del servidor", "error": str(e)}, 500
+    return {"msg": "Error interno del servidor"}, 500
 
 if __name__ == "__main__":
     # Creamos las tablas si no existen (solo para desarrollo)

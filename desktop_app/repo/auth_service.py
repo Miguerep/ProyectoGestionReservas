@@ -30,8 +30,8 @@ class AuthService():
                 }
             else:
                 return {
-                    "Code": response.status_code,
-                    "Success": False,
+                    "code": response.status_code,
+                    "success": False,
                     "error": response.json().get("msg")
                 }
         except Exception as e:

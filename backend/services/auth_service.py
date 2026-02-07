@@ -43,7 +43,7 @@ class AuthService:
             nuevo_user = Estilista(
                 nombre=nombre, email=email, 
                 password_hash=generate_password_hash(password),
-                peluqueria_id=id_peluqueria,
+                id_peluqueria=id_peluqueria,
                 activo=True
             )
         else:
