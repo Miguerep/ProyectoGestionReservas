@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from src.common import db
-from src.backend.routes import api
+from src.backend.controllers import api
 
 app = Flask(__name__)
 CORS(app)
