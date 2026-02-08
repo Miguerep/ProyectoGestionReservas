@@ -28,6 +28,13 @@ if not jwt_secret:
     raise RuntimeError("SECRET_KEY no está definida en las variables de entorno. Abortando.")
 app.config["JWT_SECRET_KEY"] = jwt_secret
 
+# Configuración de expiración de tokens
+# Access token: 15 minutos (corto para seguridad)
+# Refresh token: 30 días (largo para conveniencia)
+from datetime import timedelta
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=15)
+app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)
+
 jwt = JWTManager(app)
 db.init_app(app)
 

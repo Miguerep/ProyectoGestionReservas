@@ -149,6 +149,15 @@
           <property name="text">
            <string>Iniciar Sesión</string>
           </property>
+          <property name="shortcut">
+           <string>Return</string>
+          </property>
+          <property name="autoExclusive">
+           <bool>false</bool>
+          </property>
+          <property name="default">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
        </layout>

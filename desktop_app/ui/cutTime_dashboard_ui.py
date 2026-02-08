@@ -119,11 +119,11 @@ class Ui_MainWindow(object):
 
         self.vl_c1.addWidget(self.lblTitleAppointments)
 
-        self.lblValAppointments = QLabel(self.card1)
-        self.lblValAppointments.setObjectName(u"lblValAppointments")
-        self.lblValAppointments.setStyleSheet(u"font-size: 24px; font-weight: bold;")
+        self.lblValCitas = QLabel(self.card1)
+        self.lblValCitas.setObjectName(u"lblValCitas")
+        self.lblValCitas.setStyleSheet(u"font-size: 24px; font-weight: bold;")
 
-        self.vl_c1.addWidget(self.lblValAppointments)
+        self.vl_c1.addWidget(self.lblValCitas)
 
 
         self.horizontalLayout_Cards.addWidget(self.card1)
@@ -140,11 +140,11 @@ class Ui_MainWindow(object):
 
         self.vl_c2.addWidget(self.lblTitle2)
 
-        self.lblVal2 = QLabel(self.card2)
-        self.lblVal2.setObjectName(u"lblVal2")
-        self.lblVal2.setStyleSheet(u"font-size: 24px; font-weight: bold;")
+        self.lblValCitasTotales = QLabel(self.card2)
+        self.lblValCitasTotales.setObjectName(u"lblValCitasTotales")
+        self.lblValCitasTotales.setStyleSheet(u"font-size: 24px; font-weight: bold;")
 
-        self.vl_c2.addWidget(self.lblVal2)
+        self.vl_c2.addWidget(self.lblValCitasTotales)
 
 
         self.horizontalLayout_Cards.addWidget(self.card2)
@@ -161,11 +161,11 @@ class Ui_MainWindow(object):
 
         self.vl_c3.addWidget(self.lblTitleEarnings)
 
-        self.lblValEarnings = QLabel(self.card3)
-        self.lblValEarnings.setObjectName(u"lblValEarnings")
-        self.lblValEarnings.setStyleSheet(u"font-size: 24px; font-weight: bold;")
+        self.lblValIngresos = QLabel(self.card3)
+        self.lblValIngresos.setObjectName(u"lblValIngresos")
+        self.lblValIngresos.setStyleSheet(u"font-size: 24px; font-weight: bold;")
 
-        self.vl_c3.addWidget(self.lblValEarnings)
+        self.vl_c3.addWidget(self.lblValIngresos)
 
 
         self.horizontalLayout_Cards.addWidget(self.card3)
@@ -182,11 +182,11 @@ class Ui_MainWindow(object):
 
         self.vl_c4.addWidget(self.lblTitlePending)
 
-        self.lblValPending = QLabel(self.card4)
-        self.lblValPending.setObjectName(u"lblValPending")
-        self.lblValPending.setStyleSheet(u"font-size: 24px; font-weight: bold;")
+        self.lblValPendientes = QLabel(self.card4)
+        self.lblValPendientes.setObjectName(u"lblValPendientes")
+        self.lblValPendientes.setStyleSheet(u"font-size: 24px; font-weight: bold;")
 
-        self.vl_c4.addWidget(self.lblValPending)
+        self.vl_c4.addWidget(self.lblValPendientes)
 
 
         self.horizontalLayout_Cards.addWidget(self.card4)
@@ -263,24 +263,24 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.pushButton_2 = QPushButton(self.centralwidget)
-        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.opcionesPeluqueriaPB = QPushButton(self.centralwidget)
+        self.opcionesPeluqueriaPB.setObjectName(u"opcionesPeluqueriaPB")
 
-        self.horizontalLayout.addWidget(self.pushButton_2)
+        self.horizontalLayout.addWidget(self.opcionesPeluqueriaPB)
 
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer_2)
 
-        self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
+        self.generarInformePB = QPushButton(self.centralwidget)
+        self.generarInformePB.setObjectName(u"generarInformePB")
         sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
-        self.pushButton.setSizePolicy(sizePolicy1)
+        sizePolicy1.setHeightForWidth(self.generarInformePB.sizePolicy().hasHeightForWidth())
+        self.generarInformePB.setSizePolicy(sizePolicy1)
 
-        self.horizontalLayout.addWidget(self.pushButton)
+        self.horizontalLayout.addWidget(self.generarInformePB)
 
 
         self.verticalLayout_Main.addLayout(self.horizontalLayout)
@@ -300,13 +300,13 @@ class Ui_MainWindow(object):
         self.lblToday.setText(QCoreApplication.translate("MainWindow", u"Hoy", None))
         self.lblFullDate.setText(QCoreApplication.translate("MainWindow", u"FECHA", None))
         self.lblTitleAppointments.setText(QCoreApplication.translate("MainWindow", u"Citas hoy", None))
-        self.lblValAppointments.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.lblValCitas.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.lblTitle2.setText(QCoreApplication.translate("MainWindow", u"Total citas", None))
-        self.lblVal2.setText(QCoreApplication.translate("MainWindow", u"3", None))
+        self.lblValCitasTotales.setText(QCoreApplication.translate("MainWindow", u"3", None))
         self.lblTitleEarnings.setText(QCoreApplication.translate("MainWindow", u"Ingresos", None))
-        self.lblValEarnings.setText(QCoreApplication.translate("MainWindow", u"0\u20ac", None))
+        self.lblValIngresos.setText(QCoreApplication.translate("MainWindow", u"0\u20ac", None))
         self.lblTitlePending.setText(QCoreApplication.translate("MainWindow", u"Pendientes", None))
-        self.lblValPending.setText(QCoreApplication.translate("MainWindow", u"1", None))
+        self.lblValPendientes.setText(QCoreApplication.translate("MainWindow", u"1", None))
         self.searchEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"  Buscar por nombre, tel\u00e9fono o servicio...", None))
         self.comboStatus.setItemText(0, QCoreApplication.translate("MainWindow", u"Todos los estados", None))
         self.comboStatus.setItemText(1, QCoreApplication.translate("MainWindow", u"Confirmada", None))
@@ -326,7 +326,7 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Estado", None));
         ___qtablewidgetitem6 = self.tableAppointments.horizontalHeaderItem(6)
         ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Tel\u00e9fono", None));
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
+        self.opcionesPeluqueriaPB.setText(QCoreApplication.translate("MainWindow", u"Opciones Peluquer\u00eda", None))
+        self.generarInformePB.setText(QCoreApplication.translate("MainWindow", u"Generar Informe PDF", None))
     # retranslateUi
 

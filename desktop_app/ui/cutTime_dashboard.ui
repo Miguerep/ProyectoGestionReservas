@@ -209,7 +209,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="lblValAppointments">
+           <widget class="QLabel" name="lblValCitas">
             <property name="styleSheet">
              <string notr="true">font-size: 24px; font-weight: bold;</string>
             </property>
@@ -241,7 +241,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="lblVal2">
+           <widget class="QLabel" name="lblValCitasTotales">
             <property name="styleSheet">
              <string notr="true">font-size: 24px; font-weight: bold;</string>
             </property>
@@ -273,7 +273,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="lblValEarnings">
+           <widget class="QLabel" name="lblValIngresos">
             <property name="styleSheet">
              <string notr="true">font-size: 24px; font-weight: bold;</string>
             </property>
@@ -305,7 +305,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="lblValPending">
+           <widget class="QLabel" name="lblValPendientes">
             <property name="styleSheet">
              <string notr="true">font-size: 24px; font-weight: bold;</string>
             </property>
@@ -470,9 +470,9 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="opcionesPeluqueriaPB">
         <property name="text">
-         <string>PushButton</string>
+         <string>Opciones Peluquería</string>
         </property>
        </widget>
       </item>
@@ -493,7 +493,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="generarInformePB">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -501,7 +501,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>Generar Informe PDF</string>
         </property>
        </widget>
       </item>

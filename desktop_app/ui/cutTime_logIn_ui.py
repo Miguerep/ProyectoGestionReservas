@@ -82,6 +82,7 @@ class Ui_LoginScreen(object):
         self.loginButton = QPushButton(self.cardFrame)
         self.loginButton.setObjectName(u"loginButton")
         self.loginButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.loginButton.setAutoExclusive(False)
 
         self.verticalLayout.addWidget(self.loginButton)
 
@@ -102,6 +103,9 @@ class Ui_LoginScreen(object):
 
         self.retranslateUi(LoginScreen)
 
+        self.loginButton.setDefault(True)
+
+
         QMetaObject.connectSlotsByName(LoginScreen)
     # setupUi
 
@@ -114,5 +118,8 @@ class Ui_LoginScreen(object):
         self.userLE.setPlaceholderText(QCoreApplication.translate("LoginScreen", u"Correo", None))
         self.passLE.setPlaceholderText(QCoreApplication.translate("LoginScreen", u"Contrase\u00f1a", None))
         self.loginButton.setText(QCoreApplication.translate("LoginScreen", u"Iniciar Sesi\u00f3n", None))
+#if QT_CONFIG(shortcut)
+        self.loginButton.setShortcut(QCoreApplication.translate("LoginScreen", u"Return", None))
+#endif // QT_CONFIG(shortcut)
     # retranslateUi
 

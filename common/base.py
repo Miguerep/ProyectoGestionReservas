@@ -9,7 +9,7 @@ db = SQLAlchemy();
 class Persona(db.Model):
     __abstract__ = True 
     
-    # --- COLUMNAS PÚBLICAS (Pythonic Way) ---
+    # --- COLUMNAS PÚBLICAS ---
     # Eliminamos el guion bajo. SQLAlchemy gestiona el acceso.
     nombre = db.Column(db.String(50), nullable=False, default="")
     apellidos = db.Column(db.String(100), nullable=True, default="")
@@ -18,8 +18,7 @@ class Persona(db.Model):
     password_hash = db.Column(db.String(255), nullable=False, default="")
 
     # --- VALIDACIONES AUTOMÁTICAS (SQLAlchemy) ---
-    # Este decorador intercepta cualquier asignación (ej: usuario.nombre = "X")
-    # y ejecuta la validación antes de guardar el valor.
+    # Este decorador intercepta cualquier asignación y ejecuta la validación antes de guardar el valor.
 
     @validates('nombre')
     def validate_nombre(self, key, nombre):

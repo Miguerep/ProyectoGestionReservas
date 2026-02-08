@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QMainWindow, QTableWidgetItem, QHeaderView
-from PySide6.QtCore import Qt, QDateTime, QDate
+from PySide6.QtCore import Qt, QDateTime, QDate, QLocale
 from src.desktop_app.ui.cutTime_dashboard_ui import Ui_MainWindow
 
 class CutTime_dashboard(QMainWindow):
@@ -11,14 +11,11 @@ class CutTime_dashboard(QMainWindow):
         # Configuraciones visuales solamente
         self._configurar_tabla()
         self._configurar_fecha_hoy()
-        
-        # ¡IMPORTANTE! Hemos borrado self.cargar_citas() y self.cita_service
-        # Ahora esperamos pasivamente a que el AppController nos mande datos.
 
     def _configurar_fecha_hoy(self):
         """Establece la fecha actual en los headers y widgets"""
         hoy = QDate.currentDate()
-        self.ui.lblFullDate.setText(hoy.toString("dddd, d 'de' MMMM 'de' yyyy"))
+        self.ui.lblFullDate.setText(QLocale().toString(hoy, "dddd, d 'de' MMMM 'de' yyyy"))
         self.ui.dateEdit.setDate(hoy)
 
     def _configurar_tabla(self):
@@ -31,6 +28,7 @@ class CutTime_dashboard(QMainWindow):
         tabla.setAlternatingRowColors(True)
 
     def actualizar_tabla(self, lista_citas):
+        
         """
         Recibe la lista de citas (JSON) desde el AppController y la pinta.
         """
@@ -71,3 +69,7 @@ class CutTime_dashboard(QMainWindow):
             "precio": f"{precio:.2f} €",
             "estado": str(cita.get("estado", ""))
         }
+    
+    def _actualizar_targetas(self, lista_citas):
+        
+        self.ui.card1

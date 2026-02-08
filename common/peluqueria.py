@@ -5,7 +5,6 @@ from dataclasses import dataclass
 class Peluqueria(db.Model):
     __tablename__ = 'peluquerias'
     
-    # Mapeo id_peluqueria -> id
     id = db.Column("id_peluqueria", db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     direccion = db.Column(db.String(200), nullable=False)
@@ -19,5 +18,4 @@ class Peluqueria(db.Model):
     )
     
     # Relación con Estilistas (Uno-a-Muchos)
-    # Usamos 'overlaps' para evitar advertencias si hay conflictos con backrefs antiguos
     estilistas = db.relationship("Estilista", backref="peluqueria_ref", lazy=True)

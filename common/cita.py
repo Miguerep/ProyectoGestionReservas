@@ -18,7 +18,7 @@ class Cita(db.Model):
     
     # RELACIONES (La magia del ORM)
     cliente = db.relationship("Cliente", back_populates="citas")
-    servicio = db.relationship("Servicio") # Acceso directo a self.servicio.nombre
+    servicio = db.relationship("Servicio") 
     peluqueria = db.relationship("Peluqueria")
     estilista = db.relationship("Estilista")
     
