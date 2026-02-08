@@ -3,6 +3,15 @@ from sqlalchemy.exc import SQLAlchemyError
 from src.common import db, Cita, CitaServicio, Servicio, Peluqueria
 
 class CitaService:
+    # Definición del flujo de estados permitidos
+    ESTADOS_VALIDOS = ["Pendiente", "Confirmada", "Completada", "Cancelada"]
+    TRANSICIONES_PERMITIDAS = {
+        "Pendiente": ["Confirmada", "Cancelada"],
+        "Confirmada": ["Completada", "Cancelada"],
+        "Completada": [],  # Estado final, no permite cambios
+        "Cancelada": []    # Estado final, no permite cambios
+    }
+
     @staticmethod
     def crear_cita(cliente_id, data):
         # 1. Validaciones de Negocio
@@ -27,7 +36,7 @@ class CitaService:
                 peluqueria_id=peluqueria.id,
                 servicio_id=servicio.id,
                 fecha=fecha,
-                estado="Solicitada"
+                estado="Pendiente"
             )
             db.session.add(nueva_cita)
             db.session.flush() # Genera el ID sin commitear aún
@@ -64,3 +73,39 @@ class CitaService:
                 "precio_congelado": c.detalle_servicio.precio_aplicado if c.detalle_servicio else 0.0
             })
         return resultado
+
+    @staticmethod
+    def actualizar_estado(id_cita, nuevo_estado):
+        """
+        Actualiza el estado de una cita validando las transiciones permitidas.
+
+        Flujo de estados:
+        - Pendiente → Confirmada → Completada
+        - Cualquier estado → Cancelada (excepto Completada)
+        """
+        # Validar que el nuevo estado es válido
+        if nuevo_estado not in CitaService.ESTADOS_VALIDOS:
+            raise ValueError(f"Estado inválido. Debe ser uno de: {', '.join(CitaService.ESTADOS_VALIDOS)}")
+
+        # Buscar la cita
+        cita = Cita.query.get(id_cita)
+        if not cita:
+            raise ValueError("La cita no existe")
+
+        estado_actual = cita.estado
+
+        # Validar transición permitida
+        if nuevo_estado not in CitaService.TRANSICIONES_PERMITIDAS.get(estado_actual, []):
+            raise ValueError(
+                f"No se puede cambiar de '{estado_actual}' a '{nuevo_estado}'. "
+                f"Transiciones permitidas: {', '.join(CitaService.TRANSICIONES_PERMITIDAS.get(estado_actual, []))}"
+            )
+
+        # Actualizar estado
+        try:
+            cita.estado = nuevo_estado
+            db.session.commit()
+            return cita
+        except SQLAlchemyError as e:
+            db.session.rollback()
+            raise Exception(f"Error al actualizar el estado: {str(e)}")
