@@ -5,16 +5,20 @@ from src.desktop_app.controller.cutTime_dashboard import CutTime_dashboard
 from src.desktop_app.repo.cita_service import CitaService
 from src.desktop_app.repo.auth_service import AuthService
 from src.desktop_app.utils.token_manager import TokenManager
+from src.desktop_app.utils.theme_helper import ThemeHelper
+
 
 
 class AppController:
-    def __init__(self):
+    def __init__(self, app):
         self.app_state = JsonHandler.load_json("app_state.json")
         self.login_view = Login()
         self.mainWindow = None
         self.cita_service = CitaService()
         self.auth_service = AuthService()
         self.token_manager = TokenManager()
+        theme_helper = ThemeHelper()
+        theme_helper.apply_theme(app, self.app_state["style"])
 
         self.login_view.login_exitoso.connect(self.mostrar_dashboard)
 
@@ -78,7 +82,7 @@ class AppController:
         resultado = self.cita_service.get_citas_por_peluqueria(id_pelu, token)
 
         if resultado["success"]:
-            
+
             self.mainWindow.actualizar_tabla(resultado["data"])
         else:
             print(f"Error al cargar citas: {resultado['error']}")

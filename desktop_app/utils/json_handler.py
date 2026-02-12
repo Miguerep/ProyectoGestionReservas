@@ -1,10 +1,11 @@
 import json
 from pathlib import Path
+import os
 
 class JsonHandler:
     @staticmethod
     def load_json(file_path: str) -> dict:
-        
+        full_path = Path()
         path = Path(file_path)
         if not path.exists():
             return {}

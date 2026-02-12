@@ -6,7 +6,5 @@ from src.desktop_app.utils.theme_helper import ThemeHelper
 if __name__ == "__main__":
     
     app = QApplication(sys.argv)
-    theme_helper = ThemeHelper()
-    theme_helper.apply_theme(app, "light")
-    controller = AppController()
+    controller = AppController(app)
     sys.exit(app.exec())

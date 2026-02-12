@@ -2,7 +2,7 @@ package com.example.cuttime.data.model
 
 import com.google.gson.annotations.SerializedName
 
-class AuthModels {
+class `AuthModels.kt` {
 
     // Petición de Login
     data class LoginRequest(

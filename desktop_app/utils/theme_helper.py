@@ -8,7 +8,9 @@ class ThemeHelper:
         
         self.available_themes = {
             "light": "light.qss",
-            "dark": "dark.qss"
+            "dark": "dark.qss",
+            "warm": "warm.qss",
+            "cold": "cold.qss"
         }
     
     def apply_theme(self, app: QApplication, theme_name: str):

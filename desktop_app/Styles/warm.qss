@@ -1,0 +1,229 @@
+/* =======================================================
+   ESTILO CÁLIDO (WARM) - CutTime Theme
+   Paleta de colores cálidos: coral, terracota, crema y marrón
+   ======================================================= */
+
+/* 1. CONFIGURACIÓN BASE */
+QWidget {
+    font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+    color: #4A3728; /* Marrón oscuro cálido */
+    font-size: 14px;
+}
+
+/* Fondo principal con tono crema cálido */
+QMainWindow, QWidget#LoginScreen, QWidget#RegistroForm, QWidget#centralwidget {
+    background-color: #FDF6E3; /* Crema suave */
+}
+
+/* =======================================================
+   2. HEADER & LOGO (Dashboard)
+   ======================================================= */
+/* Logotipo en tono coral/terracota */
+QLabel#logo {
+    background-color: #E85D3F; /* Coral terracota */
+    color: white;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Títulos del Dashboard */
+QLabel#lblAppName {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4A3728; /* Marrón cálido */
+}
+
+QLabel#lblAppSub {
+    color: #8B7355; /* Marrón grisáceo cálido */
+    font-size: 13px;
+}
+
+/* Fecha en la esquina superior derecha */
+QLabel#lblToday {
+    color: #8B7355;
+}
+
+QLabel#lblFullDate {
+    font-weight: bold;
+    color: #4A3728;
+}
+
+/* =======================================================
+   3. TARJETAS (Cards) Y PANELES
+   ======================================================= */
+/* Tarjetas con fondo crema claro */
+QFrame#cardFrame,
+QFrame#card1, QFrame#card2, QFrame#card3, QFrame#card4,
+QFrame#filterFrame {
+    background-color: #FFF9F0; /* Blanco cálido */
+    border: 1px solid #F4DCC4; /* Beige suave */
+    border-radius: 12px;
+}
+
+/* Textos dentro de las tarjetas de estadísticas */
+QLabel#lblTitleAppointments, QLabel#lblTitle2, QLabel#lblTitleEarnings, QLabel#lblTitlePending {
+    color: #8B7355;
+    font-size: 14px;
+}
+
+QLabel#lblValCitas, QLabel#lblValCitasTotales, QLabel#lblValIngresos, QLabel#lblValPendientes {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4A3728;
+}
+
+/* =======================================================
+   4. TABLA DE CITAS (QTableWidget)
+   ======================================================= */
+QTableWidget {
+    background-color: transparent;
+    border: none;
+    gridline-color: #F4DCC4;
+}
+
+/* Cabecera de la tabla */
+QHeaderView::section {
+    background-color: #FFEFD5; /* Papaya suave */
+    color: #4A3728;
+    font-weight: bold;
+    font-size: 13px;
+    border: 10px;
+    border-bottom: 2px solid #F4DCC4;
+    padding: 10px 5px;
+    text-align: left;
+}
+
+/* Ítems de la tabla */
+QTableWidget::item {
+    padding: 10px 5px;
+    border-bottom: 1px solid #F4DCC4;
+    color: #4A3728;
+}
+
+QTableWidget::item:selected {
+    background-color: #FFE4D6; /* Melocotón pálido */
+    color: #E85D3F; /* Coral */
+}
+
+/* =======================================================
+   5. CONTROLES DE FORMULARIO (Inputs, Combos, Dates)
+   ======================================================= */
+QLineEdit, QComboBox, QDateEdit {
+    border: 1px solid #E8D4B8; /* Beige medio */
+    border-radius: 8px;
+    padding: 6px 12px;
+    background-color: #FFFAF3; /* Blanco muy cálido */
+    selection-background-color: #E85D3F;
+    color: #4A3728;
+    height: 36px;
+}
+
+QLineEdit:focus, QComboBox:focus, QDateEdit:focus {
+    border: 2px solid #E85D3F; /* Coral al enfocar */
+}
+
+/* Estilo específico para Combo Box flecha */
+QComboBox::drop-down {
+    border: 0px;
+    width: 20px;
+}
+
+QComboBox::down-arrow {
+    image: none;
+    border: none;
+}
+
+/* =======================================================
+   6. BOTONES (Generales y Login/Registro)
+   ======================================================= */
+/* Botón Primario - tono coral/terracota */
+QPushButton {
+    background-color: #E85D3F;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+QPushButton:hover {
+    background-color: #D6572E; /* Coral más oscuro */
+}
+
+QPushButton:pressed {
+    background-color: #B84A26; /* Terracota profundo */
+}
+
+/* Botón Secundario (Cancelar) */
+QPushButton#btn_cancelar {
+    background-color: transparent;
+    color: #8B7355;
+    border: 1px solid #E8D4B8;
+}
+
+QPushButton#btn_cancelar:hover {
+    background-color: #F4DCC4;
+}
+
+/* =======================================================
+   7. SCROLLBAR (Barra de desplazamiento)
+   ======================================================= */
+QScrollBar:vertical {
+    background: #FDF6E3;
+    width: 10px;
+    border-radius: 5px;
+}
+
+QScrollBar::handle:vertical {
+    background: #E8D4B8;
+    border-radius: 5px;
+    min-height: 20px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #D6B999;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+/* =======================================================
+   8. ELEMENTOS ADICIONALES
+   ======================================================= */
+/* Tooltips */
+QToolTip {
+    background-color: #4A3728;
+    color: white;
+    border: 1px solid #E85D3F;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+/* Menús contextuales */
+QMenu {
+    background-color: #FFF9F0;
+    border: 1px solid #F4DCC4;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+QMenu::item {
+    padding: 8px 25px;
+    border-radius: 4px;
+    color: #4A3728;
+}
+
+QMenu::item:selected {
+    background-color: #FFE4D6;
+    color: #E85D3F;
+}
+
+/* Estado deshabilitado */
+QPushButton:disabled, QLineEdit:disabled, QComboBox:disabled {
+    background-color: #F4DCC4;
+    color: #B89B7F;
+    border: 1px solid #E8D4B8;
+}

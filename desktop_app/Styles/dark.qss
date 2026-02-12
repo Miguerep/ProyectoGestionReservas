@@ -1,0 +1,318 @@
+/* =======================================================
+   ESTILO GLOBAL - CutTime Dark Theme v4
+   Modern Dark Theme with Excellent Contrast
+   ======================================================= */
+
+/* 1. CONFIGURACIÓN BASE */
+QWidget {
+    font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+    color: #e4e4e7;
+    font-size: 14px;
+}
+
+/* Fondo principal para todas las ventanas */
+QMainWindow, QWidget#LoginScreen, QWidget#RegistroForm, QWidget#centralwidget {
+    background-color: #0d1117;
+}
+
+/* =======================================================
+   2. HEADER & LOGO (Dashboard)
+   ======================================================= */
+/* Logotipo Rosa - Más vibrante en dark mode */
+QLabel#logo {
+    background-color: #ec4899;
+    color: white;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Títulos del Dashboard */
+QLabel#lblAppName {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+QLabel#lblAppSub {
+    color: #a1a1aa;
+    font-size: 13px;
+}
+
+/* Fecha en la esquina superior derecha */
+QLabel#lblToday {
+    color: #a1a1aa;
+}
+
+QLabel#lblFullDate {
+    font-weight: bold;
+    color: #fafafa;
+}
+
+/* =======================================================
+   3. TARJETAS (Cards) Y PANELES
+   ======================================================= */
+/* Aplicamos estilo de tarjeta oscura con mejor contraste a:
+   - Los frames de estadísticas (card1 a card4)
+   - El frame de filtros (filterFrame)
+   - La tarjeta de login (cardFrame)
+*/
+QFrame#cardFrame,
+QFrame#card1, QFrame#card2, QFrame#card3, QFrame#card4,
+QFrame#filterFrame {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+}
+
+/* Textos dentro de las tarjetas de estadísticas */
+QLabel#lblTitleAppointments, QLabel#lblTitle2, QLabel#lblTitleEarnings, QLabel#lblTitlePending {
+    color: #8b949e;
+    font-size: 14px;
+}
+
+QLabel#lblValAppointments, QLabel#lblVal2, QLabel#lblValEarnings, QLabel#lblValPending {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* =======================================================
+   4. TABLA DE CITAS (QTableWidget)
+   ======================================================= */
+QTableWidget {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    gridline-color: #21262d;
+}
+
+/* Cabecera de la tabla */
+QHeaderView::section {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    font-weight: bold;
+    font-size: 13px;
+    border: none;
+    border-bottom: 2px solid #30363d;
+    padding: 10px 5px;
+    text-align: left;
+}
+
+/* Ítems de la tabla */
+QTableWidget::item {
+    padding: 10px 5px;
+    border-bottom: 1px solid #21262d;
+    color: #e4e4e7;
+}
+
+QTableWidget::item:selected {
+    background-color: #3d1f2e;
+    color: #fbbf24;
+}
+
+QTableWidget::item:hover {
+    background-color: #1c2128;
+}
+
+/* =======================================================
+   5. CONTROLES DE FORMULARIO (Inputs, Combos, Dates)
+   ======================================================= */
+QLineEdit, QComboBox, QDateEdit {
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 6px 12px;
+    background-color: #0d1117;
+    selection-background-color: #ec4899;
+    selection-color: #ffffff;
+    color: #e4e4e7;
+    height: 36px;
+}
+
+QLineEdit:focus, QComboBox:focus, QDateEdit:focus {
+    border: 2px solid #ec4899;
+    background-color: #161b22;
+}
+
+QLineEdit:hover, QComboBox:hover, QDateEdit:hover {
+    border: 1px solid #484f58;
+}
+
+/* Placeholder text */
+QLineEdit::placeholder {
+    color: #6e7681;
+}
+
+/* ComboBox dropdown */
+QComboBox::drop-down {
+    border: 0px;
+    width: 24px;
+    padding-right: 4px;
+}
+
+QComboBox::down-arrow {
+    image: none;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #8b949e;
+    margin-right: 8px;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    selection-background-color: #ec4899;
+    selection-color: #ffffff;
+    color: #e4e4e7;
+    outline: none;
+}
+
+/* DateEdit calendar dropdown */
+QCalendarWidget {
+    background-color: #161b22;
+    color: #e4e4e7;
+}
+
+QCalendarWidget QToolButton {
+    color: #e4e4e7;
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+QCalendarWidget QToolButton:hover {
+    background-color: #1c2128;
+}
+
+QCalendarWidget QAbstractItemView {
+    background-color: #161b22;
+    selection-background-color: #ec4899;
+    selection-color: #ffffff;
+}
+
+/* =======================================================
+   6. BOTONES (Generales y Login/Registro)
+   ======================================================= */
+/* Botón Primario */
+QPushButton {
+    background-color: #ec4899;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+QPushButton:hover {
+    background-color: #f472b6;
+}
+
+QPushButton:pressed {
+    background-color: #db2777;
+}
+
+QPushButton:disabled {
+    background-color: #30363d;
+    color: #6e7681;
+}
+
+/* Botón Secundario (Cancelar) */
+QPushButton#btn_cancelar {
+    background-color: #21262d;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+}
+
+QPushButton#btn_cancelar:hover {
+    background-color: #30363d;
+    border: 1px solid #484f58;
+}
+
+QPushButton#btn_cancelar:pressed {
+    background-color: #161b22;
+}
+
+/* =======================================================
+   7. SCROLLBARS
+   ======================================================= */
+QScrollBar:vertical {
+    background-color: #0d1117;
+    width: 12px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #30363d;
+    border-radius: 6px;
+    min-height: 20px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #484f58;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar:horizontal {
+    background-color: #0d1117;
+    height: 12px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:horizontal {
+    background-color: #30363d;
+    border-radius: 6px;
+    min-width: 20px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background-color: #484f58;
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
+
+/* =======================================================
+   8. TOOLTIPS Y MENSAJES
+   ======================================================= */
+QToolTip {
+    background-color: #161b22;
+    color: #e4e4e7;
+    border: 1px solid #30363d;
+    border-radius: 4px;
+    padding: 4px 8px;
+}
+
+/* =======================================================
+   9. CHECKBOX Y RADIOBUTTON (Si se usan)
+   ======================================================= */
+QCheckBox, QRadioButton {
+    color: #e4e4e7;
+    spacing: 8px;
+}
+
+QCheckBox::indicator, QRadioButton::indicator {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #30363d;
+    border-radius: 4px;
+    background-color: #0d1117;
+}
+
+QCheckBox::indicator:hover, QRadioButton::indicator:hover {
+    border: 2px solid #484f58;
+}
+
+QCheckBox::indicator:checked, QRadioButton::indicator:checked {
+    background-color: #ec4899;
+    border: 2px solid #ec4899;
+}
+
+QRadioButton::indicator {
+    border-radius: 9px;
+}
