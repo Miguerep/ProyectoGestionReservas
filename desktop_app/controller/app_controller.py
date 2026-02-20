@@ -18,7 +18,9 @@ class AppController:
         self.auth_service = AuthService()
         self.token_manager = TokenManager()
         theme_helper = ThemeHelper()
-        theme_helper.apply_theme(app, self.app_state["style"])
+        # Load theme from saved state, default to "light" if not found
+        current_theme = self.app_state.get("style", "light")
+        theme_helper.apply_theme(app, current_theme)
 
         self.login_view.login_exitoso.connect(self.mostrar_dashboard)
 
@@ -73,12 +75,14 @@ class AppController:
     def mostrar_dashboard(self, user_data, token):
         print(f"¡Señal recibida! Usuario: {user_data["nombre"]}")
         print(f"Token guardado: {token}")
-        self.mainWindow = CutTime_dashboard()
-        
-        self.login_view.close()
-        
-        # 3. Llamar al servicio
+
+        # Pasar user_data y token al dashboard
         id_pelu = user_data["id"]
+        self.mainWindow = CutTime_dashboard(id_pelu, token)
+
+        self.login_view.close()
+
+        # 3. Llamar al servicio
         resultado = self.cita_service.get_citas_por_peluqueria(id_pelu, token)
 
         if resultado["success"]:
@@ -86,6 +90,6 @@ class AppController:
             self.mainWindow.actualizar_tabla(resultado["data"])
         else:
             print(f"Error al cargar citas: {resultado['error']}")
-        
+
         # 5. Mostrar la ventana
         self.mainWindow.show()

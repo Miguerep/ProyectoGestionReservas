@@ -1,16 +1,25 @@
 from PySide6.QtWidgets import QMainWindow, QTableWidgetItem, QHeaderView
 from PySide6.QtCore import Qt, QDateTime, QDate, QLocale
 from src.desktop_app.ui.cutTime_dashboard_ui import Ui_MainWindow
+from src.desktop_app.controller.cutTime_opciones import CutTime_Opciones
 
 class CutTime_dashboard(QMainWindow):
-    def __init__(self):
+    def __init__(self, id_peluqueria=None, token=None):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        
+
+        self.id_peluqueria = id_peluqueria
+        self.token = token
+        self.opciones_window = None
+
         # Configuraciones visuales solamente
         self._configurar_tabla()
         self._configurar_fecha_hoy()
+
+        # Conectar botón de opciones
+        if hasattr(self.ui, 'opcionesPeluqueriaPB'):
+            self.ui.opcionesPeluqueriaPB.clicked.connect(self.abrir_opciones)
 
     def _configurar_fecha_hoy(self):
         """Establece la fecha actual en los headers y widgets"""
@@ -69,7 +78,23 @@ class CutTime_dashboard(QMainWindow):
             "precio": f"{precio:.2f} €",
             "estado": str(cita.get("estado", ""))
         }
-    
+
+    def abrir_opciones(self):
+        """Abre la ventana de opciones de peluquería"""
+        if not self.id_peluqueria or not self.token:
+            print("Error: No hay datos de peluquería o token")
+            return
+
+        # Si la ventana ya existe, solo mostrarla
+        if self.opciones_window is not None and self.opciones_window.isVisible():
+            self.opciones_window.raise_()
+            self.opciones_window.activateWindow()
+            return
+
+        # Crear nueva ventana de opciones
+        self.opciones_window = CutTime_Opciones(self.id_peluqueria, self.token)
+        self.opciones_window.show()
+
     def _actualizar_targetas(self, lista_citas):
-        
+
         self.ui.card1

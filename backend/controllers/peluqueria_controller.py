@@ -7,7 +7,7 @@ from src.backend.services.peluqueria_service import PeluqueriaService
 @api.route("/register/peluquerias", methods=["POST"])
 @jwt_required()
 def crear_peluqueria():
-    # Validación de Rol (Authorization) sigue siendo responsabilidad de la capa HTTP/Router
+    
     claims = get_jwt()
     if claims.get("rol") != "gerente":
         return jsonify({"msg": "Acceso denegado"}), 403
