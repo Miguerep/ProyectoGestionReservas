@@ -130,7 +130,25 @@ QLineEdit:focus, QComboBox:focus, QDateEdit:focus {
 /* Estilo específico para Combo Box flecha */
 QComboBox::drop-down {
     border: 0px;
-    width: 20px;
+    width: 24px;
+    padding-right: 4px;
+}
+
+QComboBox::down-arrow {
+    image: none;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #888888;
+    margin-right: 8px;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    selection-background-color: #d63384;
+    selection-color: #ffffff;
+    color: #333333;
+    outline: none;
 }
 
 /* =======================================================
@@ -164,4 +182,47 @@ QPushButton#btn_cancelar {
 
 QPushButton#btn_cancelar:hover {
     background-color: #e5e7eb;
+}
+
+/* =======================================================
+   7. LISTWIDGET (Opciones Page - Estilistas)
+   ======================================================= */
+QListWidget {
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 4px;
+    outline: none;
+}
+
+QListWidget::item {
+    padding: 10px;
+    border-radius: 6px;
+    margin: 2px;
+    color: #333333;
+}
+
+QListWidget::item:hover {
+    background-color: #f3f4f6;
+}
+
+QListWidget::item:selected {
+    background-color: #fce4ec;
+    color: #d63384;
+    font-weight: bold;
+}
+
+/* =======================================================
+   8. DIALOGS (Estilista Create/Edit)
+   ======================================================= */
+QDialog {
+    background-color: #f8f9fa;
+}
+
+QDialog QLabel {
+    color: #333333;
+}
+
+QDialog QPushButton {
+    min-width: 80px;
 }

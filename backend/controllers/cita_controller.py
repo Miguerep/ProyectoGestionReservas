@@ -2,7 +2,7 @@ from flask import request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from src.backend.controllers import api
 from src.backend.services.cita_service import CitaService
-
+from src.common import Cita, Estilista, Peluqueria
 
 @api.route("/register/citas", methods=["POST"])
 @jwt_required()
@@ -59,6 +59,53 @@ def actualizar_estado_cita(id_cita):
 
         return jsonify({
             "msg": "Estado actualizado exitosamente",
+            "cita": {
+                "id": cita.id,
+                "estado": cita.estado,
+                "fecha": cita.fecha.strftime("%Y-%m-%d %H:%M")
+            }
+        }), 200
+
+    except ValueError as e:
+        return jsonify({"msg": str(e)}), 400
+    except Exception as e:
+        return jsonify({"msg": "Error interno del servidor", "error": str(e)}), 500
+
+
+@api.route("/citas/<int:id_cita>/cancel", methods=["PUT"])
+@jwt_required()
+def cancelar_cita(id_cita):
+    """
+    Cancela una cita existente.
+
+    Permisos:
+    - Clientes: solo pueden cancelar sus propias citas
+    - Gerentes y estilistas: pueden cancelar cualquier cita
+    """
+    claims = get_jwt()
+    rol = claims.get("rol")
+    user_id = int(get_jwt_identity())
+
+    try:
+        # Si es cliente, verificar que sea su cita
+        cita = Cita.query.get(id_cita)
+        
+        if rol == "cliente":
+            if cita.cliente_id != user_id:
+                return jsonify({"msg": "No tienes permiso para cancelar esta cita"}), 403
+            
+        elif rol in ["gerente", "estilista"]:
+            if cita.peluqueria_id != claims.get("peluqueria_id"):
+                return jsonify({"msg": "No tienes permiso para cancelar esta cita"}), 403
+
+        elif not cita:
+            return jsonify({"msg": "La cita no existe"}), 404
+        
+        # Cancelar la cita usando el servicio
+        cita = CitaService.actualizar_estado(id_cita, "Cancelada")
+
+        return jsonify({
+            "msg": "Cita cancelada exitosamente",
             "cita": {
                 "id": cita.id,
                 "estado": cita.estado,

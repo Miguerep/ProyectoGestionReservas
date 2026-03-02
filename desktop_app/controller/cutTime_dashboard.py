@@ -1,14 +1,15 @@
-from PySide6.QtWidgets import QMainWindow, QTableWidgetItem, QHeaderView
+from PySide6.QtWidgets import QMainWindow, QTableWidgetItem, QHeaderView, QMessageBox
 from PySide6.QtCore import Qt, QDateTime, QDate, QLocale
 from src.desktop_app.ui.cutTime_dashboard_ui import Ui_MainWindow
 from src.desktop_app.controller.cutTime_opciones import CutTime_Opciones
+from src.desktop_app.utils.auth_helper import AuthHelper
 
 class CutTime_dashboard(QMainWindow):
     def __init__(self, id_peluqueria=None, token=None):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-
+        self.auth_helper = AuthHelper()
         self.id_peluqueria = id_peluqueria
         self.token = token
         self.opciones_window = None
@@ -20,6 +21,19 @@ class CutTime_dashboard(QMainWindow):
         # Conectar botón de opciones
         if hasattr(self.ui, 'opcionesPeluqueriaPB'):
             self.ui.opcionesPeluqueriaPB.clicked.connect(self.abrir_opciones)
+            
+        #TODO: Conectar botón de reportes cuando esté implementado
+        
+        if hasattr(self.ui, 'actionCerrar_Sesi_n'):
+            # Conectar logout
+            self.ui.actionCerrar_Sesi_n.triggered.connect(self.cerrar_sesion)
+
+    def cerrar_sesion(self):
+        """Cierra la sesión y cierra la ventana"""
+        respuesta = QMessageBox.warning(self, "Cerrar sesión", "¿Estás seguro de que deseas cerrar sesión?", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        if respuesta == QMessageBox.StandardButton.Yes:
+            self.auth_helper.logout()
+            self.close()
 
     def _configurar_fecha_hoy(self):
         """Establece la fecha actual en los headers y widgets"""
@@ -58,6 +72,9 @@ class CutTime_dashboard(QMainWindow):
             
             # Alineación derecha para precio
             tabla.item(row_index, 4).setTextAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+            
+        self._actualizar_targetas(lista_citas)
+
 
     def _procesar_datos_fila(self, cita):
         """Ayudante para formatear los datos antes de pintarlos"""
@@ -97,4 +114,8 @@ class CutTime_dashboard(QMainWindow):
 
     def _actualizar_targetas(self, lista_citas):
 
-        self.ui.card1
+        self.ui.lblValCitas.setText(str(len(lista_citas)))
+        precio_total = sum(float(c.get("precio_congelado", 0.0)) for c in lista_citas)
+        self.ui.lblValIngresos.setText(f"{precio_total:.2f} €")
+        self.ui.lblValPendientes.setText(str(sum(1 for c in lista_citas if c.get("estado") == "Pendiente")))
+        

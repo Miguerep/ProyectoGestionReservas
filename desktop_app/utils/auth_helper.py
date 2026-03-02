@@ -119,3 +119,4 @@ class AuthHelper:
     def logout(self):
         """Cierra la sesión y limpia todos los tokens"""
         self.token_manager.clear_tokens()
+        print("Sesión cerrada exitosamente")

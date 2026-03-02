@@ -11,15 +11,16 @@
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QComboBox, QDateEdit,
-    QFrame, QHBoxLayout, QHeaderView, QLabel,
-    QLineEdit, QMainWindow, QPushButton, QSizePolicy,
-    QSpacerItem, QTableWidget, QTableWidgetItem, QVBoxLayout,
-    QWidget)
+from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
+    QCursor, QFont, QFontDatabase, QGradient,
+    QIcon, QImage, QKeySequence, QLinearGradient,
+    QPainter, QPalette, QPixmap, QRadialGradient,
+    QTransform)
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractSpinBox, QApplication, QComboBox,
+    QDateEdit, QFrame, QHBoxLayout, QHeaderView,
+    QLabel, QLineEdit, QMainWindow, QMenu,
+    QMenuBar, QPushButton, QSizePolicy, QSpacerItem,
+    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -30,6 +31,10 @@ class Ui_MainWindow(object):
 "	background-color: #f5f7fb;\n"
 "}\n"
 "")
+        self.actionCerrar_Sesi_n = QAction(MainWindow)
+        self.actionCerrar_Sesi_n.setObjectName(u"actionCerrar_Sesi_n")
+        self.actionAjustes_App = QAction(MainWindow)
+        self.actionAjustes_App.setObjectName(u"actionAjustes_App")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_Main = QVBoxLayout(self.centralwidget)
@@ -253,6 +258,7 @@ class Ui_MainWindow(object):
         self.tableAppointments.setObjectName(u"tableAppointments")
         self.tableAppointments.setMaximumSize(QSize(16777215, 2000))
         self.tableAppointments.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        self.tableAppointments.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.tableAppointments.setShowGrid(False)
         self.tableAppointments.setSortingEnabled(True)
         self.tableAppointments.horizontalHeader().setCascadingSectionResizes(True)
@@ -286,6 +292,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_Main.addLayout(self.horizontalLayout)
 
         MainWindow.setCentralWidget(self.centralwidget)
+        self.menuBar = QMenuBar(MainWindow)
+        self.menuBar.setObjectName(u"menuBar")
+        self.menuBar.setGeometry(QRect(0, 0, 1157, 33))
+        self.menuSettings = QMenu(self.menuBar)
+        self.menuSettings.setObjectName(u"menuSettings")
+        MainWindow.setMenuBar(self.menuBar)
+
+        self.menuBar.addAction(self.menuSettings.menuAction())
+        self.menuSettings.addSeparator()
+        self.menuSettings.addAction(self.actionCerrar_Sesi_n)
+        self.menuSettings.addAction(self.actionAjustes_App)
 
         self.retranslateUi(MainWindow)
 
@@ -294,6 +311,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"CutTime Dashboard", None))
+        self.actionCerrar_Sesi_n.setText(QCoreApplication.translate("MainWindow", u"Cerrar Sesi\u00f3n", None))
+        self.actionAjustes_App.setText(QCoreApplication.translate("MainWindow", u"Ajustes App", None))
         self.logo.setText(QCoreApplication.translate("MainWindow", u"\u2702", None))
         self.lblAppName.setText(QCoreApplication.translate("MainWindow", u"CutTime", None))
         self.lblAppSub.setText(QCoreApplication.translate("MainWindow", u"Panel de gesti\u00f3n de citas", None))
@@ -328,5 +347,6 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Tel\u00e9fono", None));
         self.opcionesPeluqueriaPB.setText(QCoreApplication.translate("MainWindow", u"Opciones Peluquer\u00eda", None))
         self.generarInformePB.setText(QCoreApplication.translate("MainWindow", u"Generar Informe PDF", None))
+        self.menuSettings.setTitle(QCoreApplication.translate("MainWindow", u"Settings", None))
     # retranslateUi
 

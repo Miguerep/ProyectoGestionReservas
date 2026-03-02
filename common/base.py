@@ -21,19 +21,19 @@ class Persona(db.Model):
     # Este decorador intercepta cualquier asignación y ejecuta la validación antes de guardar el valor.
 
     @validates('nombre')
-    def validate_nombre(self, key, nombre):
+    def validate_nombre(self, nombre):
         if not nombre or len(nombre.strip()) < 2:
             raise ValueError("El nombre debe tener al menos 2 caracteres.")
         return nombre
 
     @validates('apellidos')
-    def validate_apellidos(self, key, apellidos):
+    def validate_apellidos(self, apellidos):
         if apellidos and len(apellidos.strip()) < 2:
             raise ValueError("El apellido debe tener al menos 2 caracteres.")
         return apellidos
 
     @validates('telefono')
-    def validate_telefono(self, key, telefono):
+    def validate_telefono(self, telefono):
         if telefono:
             telefono_limpio = telefono.strip()
             if len(telefono_limpio) != 9 or not telefono_limpio.isdigit():
@@ -41,13 +41,13 @@ class Persona(db.Model):
         return telefono
 
     @validates('email')
-    def validate_email(self, key, email):
+    def validate_email(self, email):
         if not email or "@" not in email:
             raise ValueError("El email no es válido.")
         return email
 
     @validates('password_hash')
-    def validate_password_hash(self, key, password_hash):
+    def validate_password_hash(self, password_hash):
         if not password_hash or len(password_hash) < 10:
             raise ValueError("El hash de la contraseña es inseguro o inválido.")
         return password_hash

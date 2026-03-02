@@ -415,6 +415,9 @@
       <property name="focusPolicy">
        <enum>Qt::FocusPolicy::NoFocus</enum>
       </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+      </property>
       <property name="showGrid">
        <bool>false</bool>
       </property>
@@ -509,6 +512,35 @@
     </item>
    </layout>
   </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1157</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actionCerrar_Sesi_n"/>
+    <addaction name="actionAjustes_App"/>
+   </widget>
+   <addaction name="menuSettings"/>
+  </widget>
+  <action name="actionCerrar_Sesi_n">
+   <property name="text">
+    <string>Cerrar Sesión</string>
+   </property>
+  </action>
+  <action name="actionAjustes_App">
+   <property name="text">
+    <string>Ajustes App</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

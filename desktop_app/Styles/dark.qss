@@ -316,3 +316,46 @@ QCheckBox::indicator:checked, QRadioButton::indicator:checked {
 QRadioButton::indicator {
     border-radius: 9px;
 }
+
+/* =======================================================
+   10. LISTWIDGET (Opciones Page - Estilistas)
+   ======================================================= */
+QListWidget {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 4px;
+    outline: none;
+}
+
+QListWidget::item {
+    padding: 10px;
+    border-radius: 6px;
+    margin: 2px;
+    color: #e4e4e7;
+}
+
+QListWidget::item:hover {
+    background-color: #1c2128;
+}
+
+QListWidget::item:selected {
+    background-color: #3d1f2e;
+    color: #ec4899;
+    font-weight: bold;
+}
+
+/* =======================================================
+   11. DIALOGS (Estilista Create/Edit)
+   ======================================================= */
+QDialog {
+    background-color: #0d1117;
+}
+
+QDialog QLabel {
+    color: #e4e4e7;
+}
+
+QDialog QPushButton {
+    min-width: 80px;
+}

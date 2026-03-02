@@ -340,3 +340,46 @@ QLineEdit:disabled, QComboBox:disabled {
     color: #94a3b8;
     border: 1px solid #cbd5e1;
 }
+
+/* =======================================================
+   11. LISTWIDGET (Opciones Page - Estilistas)
+   ======================================================= */
+QListWidget {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 4px;
+    outline: none;
+}
+
+QListWidget::item {
+    padding: 10px;
+    border-radius: 6px;
+    margin: 2px;
+    color: #1e3a5f;
+}
+
+QListWidget::item:hover {
+    background-color: #f0f9ff;
+}
+
+QListWidget::item:selected {
+    background-color: #bae6fd;
+    color: #0369a1;
+    font-weight: bold;
+}
+
+/* =======================================================
+   12. DIALOGS (Estilista Create/Edit)
+   ======================================================= */
+QDialog {
+    background-color: #f0f7ff;
+}
+
+QDialog QLabel {
+    color: #1e3a5f;
+}
+
+QDialog QPushButton {
+    min-width: 80px;
+}

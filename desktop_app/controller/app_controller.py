@@ -11,16 +11,18 @@ from src.desktop_app.utils.theme_helper import ThemeHelper
 
 class AppController:
     def __init__(self, app):
+        self.app = app
         self.app_state = JsonHandler.load_json("app_state.json")
+        print(f"app_state cargado: {self.app_state}")
         self.login_view = Login()
         self.mainWindow = None
         self.cita_service = CitaService()
         self.auth_service = AuthService()
         self.token_manager = TokenManager()
-        theme_helper = ThemeHelper()
+        self.theme_helper = ThemeHelper()
         # Load theme from saved state, default to "light" if not found
-        current_theme = self.app_state.get("style", "light")
-        theme_helper.apply_theme(app, current_theme)
+        current_theme = self.app_state.get("style", "warm")
+        self.theme_helper.apply_theme(self.app, current_theme)
 
         self.login_view.login_exitoso.connect(self.mostrar_dashboard)
 

@@ -49,7 +49,7 @@ class CutTime_Opciones(QWidget):
             nombre_completo = f"{estilista['nombre']} {estilista['apellidos']}".strip()
             email = estilista['email']
             telefono = estilista.get('telefono', 'Sin teléfono')
-            activo = "✓ Activo" if estilista['activo'] else "✗ Inactivo"
+            activo = " Activo" if estilista['activo'] else " Inactivo"
 
             texto = f"{nombre_completo} - {email} - {telefono} - {activo}"
 
